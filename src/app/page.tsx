@@ -6,7 +6,7 @@ type Page = "home" | "directions" | "dest" | "cruise" | "videos" | "contacts";
 const LOGO = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779385406/pantera_luxe_logo_v0gbmo.png";
 
 const DESTS_PREVIEW = [
-  { key:"dubai",   flag:"🇦🇪", title:"Дубай",          sub:"Город будущего — небоскрёбы, пустыня, роскошь",      img:"https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=70", tags:["🏖️ Пляж","🏙️ Город","✈️ 5ч","от $499"] },
+  { key:"dubai",   flag:"🇦🇪", title:"Дубай",          sub:"Город будущего — небоскрёбы, пустыня, роскошь",      img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779484881/Dubai2_zebzf8.png", tags:["🏖️ Пляж","🏙️ Город","✈️ 5ч","от $499"] },
   { key:"sharm",   flag:"🇪🇬", title:"Шарм Эль Шейх",  sub:"Жемчужина Красного моря — дайвинг, риф, вечное лето",img:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=70", tags:["🏖️ Пляж","🤿 Дайвинг","✈️ 4ч","от $380"] },
   { key:"turkey",  flag:"🇹🇷", title:"Турция",          sub:"Стамбул, Каппадокия, Анталья — два континента",      img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779483536/112_gupiyu.png", tags:["🏙️ Стамбул","🏖️ Анталья","🎈 Каппадокия","от $350"] },
 ];
