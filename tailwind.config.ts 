@@ -2,9 +2,8 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -16,12 +15,6 @@ const config: Config = {
         dark2: "#1a2b3c",
         accent: "#ff6b35",
         accent2: "#ffd166",
-      },
-      borderRadius: {
-        xl: "14px",
-      },
-      boxShadow: {
-        card: "0 4px 20px rgba(0,0,0,0.10)",
       },
     },
   },
