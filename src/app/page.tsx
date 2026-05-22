@@ -13,16 +13,16 @@ const DESTS_PREVIEW = [
 
 const DIR_CARDS = [
   { key:"dubai",   flag:"🇦🇪", name:"Дубай",           sub:"ОАЭ · от $499",            cat:"city beach",  img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779484881/Dubai2_zebzf8.png" },
-  { key:"sharm",   flag:"🇪🇬", name:"Шарм Эль Шейх",   sub:"Египет · от $380",          cat:"beach",       img:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&q=65" },
+  { key:"sharm",   flag:"🇪🇬", name:"Шарм Эль Шейх",   sub:"Египет · от $380",          cat:"beach",       img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779487245/Red_Sea_vxieui.png" },
   { key:"turkey",  flag:"🇹🇷", name:"Турция",           sub:"Стамбул, Анталья · от $350",cat:"beach city",  img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779483536/112_gupiyu.png" },
   { key:"maldives",flag:"🇲🇻", name:"Мальдивы",         sub:"от $1200",                  cat:"beach",       img:"https://images.unsplash.com/photo-1573843981267-be1999ff37cd?w=500&q=65" },
   { key:"thailand",flag:"🇹🇭", name:"Таиланд",          sub:"Пхукет · от $650",          cat:"beach",       img:"https://images.unsplash.com/photo-1528127269322-539801943592?w=500&q=65" },
   { key:"georgia", flag:"🇬🇪", name:"Грузия",           sub:"от $290",                   cat:"city nature", img:"https://images.unsplash.com/photo-1565008576549-57569a49371d?w=500&q=65" },
-  { key:"baku",    flag:"🇦🇿", name:"Азербайджан",      sub:"Баку · от $250",            cat:"city",        img:"https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=500&q=65" },
-  { key:"karlovy", flag:"🇨🇿", name:"Карловы Вары",     sub:"Чехия",                     cat:"health city", img:"https://images.unsplash.com/photo-1571406252241-db0280bd36cd?w=500&q=65" },
+  { key:"baku",    flag:"🇦🇿", name:"Азербайджан",      sub:"Баку · от $250",            cat:"city",        img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779487244/baku_xmstww.png" },
+  { key:"karlovy", flag:"🇨🇿", name:"Карловы Вары",     sub:"Чехия",                     cat:"health city", img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779487245/che_gslbqf.png" },
   { key:"naftalan",flag:"🇦🇿", name:"Нафталан",         sub:"Азербайджан",               cat:"health",      img:"https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=500&q=65" },
   { key:"vietnam", flag:"🇻🇳", name:"Вьетнам",          sub:"от $600",                   cat:"beach",       img:"https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=500&q=65" },
-  { key:"qatar",   flag:"🇶🇦", name:"Катар",            sub:"Доха",                      cat:"city",        img:"https://images.unsplash.com/photo-1577948000111-9c970dfe3743?w=500&q=65" },
+  { key:"qatar",   flag:"🇶🇦", name:"Катар",            sub:"Доха",                      cat:"city",        img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779487245/doha_fvlnzl.png" },
   { key:"issiyk",  flag:"🇰🇬", name:"Иссык-Куль",      sub:"от $180",                   cat:"nature beach",img:"https://images.unsplash.com/photo-1551632811-561732d1e306?w=500&q=65" },
 ];
 
