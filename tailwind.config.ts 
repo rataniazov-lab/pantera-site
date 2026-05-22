@@ -1,0 +1,31 @@
+import type { Config } from "tailwindcss";
+
+const config: Config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ["Manrope", "system-ui", "-apple-system", "sans-serif"],
+      },
+      colors: {
+        dark: "#0d1b2a",
+        dark2: "#1a2b3c",
+        accent: "#ff6b35",
+        accent2: "#ffd166",
+      },
+      borderRadius: {
+        xl: "14px",
+      },
+      boxShadow: {
+        card: "0 4px 20px rgba(0,0,0,0.10)",
+      },
+    },
+  },
+  plugins: [],
+};
+
+export default config;
