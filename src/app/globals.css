@@ -486,3 +486,10 @@ button {
 .animate-fire {
   animation: fireGlow 2s ease-in-out infinite;
 }
+
+.dest-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 5%;
+}
