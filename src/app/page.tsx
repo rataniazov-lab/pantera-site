@@ -1,5 +1,5 @@
 "use client";
-
+// pantera-site/src/app/page.tsx — v3 plain CSS, no Tailwind
 import { useEffect, useState, useCallback } from "react";
 
 type Page = "home" | "directions" | "dest" | "cruise" | "videos" | "contacts";
