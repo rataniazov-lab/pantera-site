@@ -202,7 +202,14 @@ a { color: inherit; text-decoration: none; }
 .dir-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; padding-bottom: 52px; }
 .dir-card { position: relative; border-radius: var(--radius); overflow: hidden; height: 210px; cursor: pointer; transition: transform 0.25s; }
 .dir-card:hover { transform: scale(1.02); }
-.dir-card img { width: 100%; height: 100%; object-fit: cover; }
+
+.dir-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+}
+
 .dir-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,27,42,0.88) 0%, transparent 55%); }
 .dir-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 16px; }
 .dir-name { color: #fff; font-weight: 800; font-size: 17px; }
