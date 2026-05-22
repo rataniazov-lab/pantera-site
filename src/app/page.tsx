@@ -8,7 +8,7 @@ const LOGO = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779385406/pant
 const DESTS_PREVIEW = [
   { key:"dubai",   flag:"🇦🇪", title:"Дубай",          sub:"Город будущего — небоскрёбы, пустыня, роскошь",      img:"https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=70", tags:["🏖️ Пляж","🏙️ Город","✈️ 5ч","от $499"] },
   { key:"sharm",   flag:"🇪🇬", title:"Шарм Эль Шейх",  sub:"Жемчужина Красного моря — дайвинг, риф, вечное лето",img:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=70", tags:["🏖️ Пляж","🤿 Дайвинг","✈️ 4ч","от $380"] },
-  { key:"turkey",  flag:"🇹🇷", title:"Турция",          sub:"Стамбул, Каппадокия, Анталья — два континента",      img:"https://images.unsplash.com/photo-1530838236892-bce9f63a3ef1?w=600&q=70", tags:["🏙️ Стамбул","🏖️ Анталья","🎈 Каппадокия","от $350"] },
+  { key:"turkey",  flag:"🇹🇷", title:"Турция",          sub:"Стамбул, Каппадокия, Анталья — два континента",      img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779479790/turkey1_qbasgh.png", tags:["🏙️ Стамбул","🏖️ Анталья","🎈 Каппадокия","от $350"] },
 ];
 
 const DIR_CARDS = [
