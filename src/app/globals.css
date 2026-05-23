@@ -35,6 +35,98 @@ a { color: inherit; text-decoration: none; }
 .page-top { padding-top: 60px; }
 @media (min-width: 881px) { .page-top { padding-top: 80px; } }
 
+
+/* в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ
+   PREMIUM PRICE SYSTEM вЂ” marker highlight
+   в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ */
+
+/* Old crossed-out price */
+.price-old {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  text-decoration: line-through;
+  text-decoration-color: #94a3b8;
+  letter-spacing: 0.2px;
+  margin-bottom: 3px;
+  line-height: 1;
+}
+
+/* New highlighted price вЂ” marker effect */
+.price-new {
+  display: inline-block;
+  position: relative;
+  font-size: 18px;
+  font-weight: 900;
+  color: #d95e1a;
+  line-height: 1.1;
+  padding: 2px 6px 3px 4px;
+  z-index: 0;
+}
+.price-new::before {
+  content: '';
+  position: absolute;
+  inset: 0 -3px;
+  background: linear-gradient(104deg,
+    rgba(255,200,120,0) 0%,
+    rgba(255,195,100,0.55) 10%,
+    rgba(255,210,130,0.70) 35%,
+    rgba(255,205,115,0.68) 65%,
+    rgba(255,195,100,0.55) 88%,
+    rgba(255,200,120,0) 100%
+  );
+  border-radius: 3px 6px 4px 5px / 5px 4px 6px 3px;
+  transform: skewX(-2deg) scaleY(1.05);
+  z-index: -1;
+}
+
+/* Wrapper for price block */
+.price-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* в”Ђв”Ђ Cruise card price upgrade в”Ђв”Ђ */
+.cruise-dest-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+.cruise-dest-price-block { display: flex; flex-direction: column; gap: 2px; }
+.cruise-dest-price { display: none; } /* replaced by .price-new */
+
+/* в”Ђв”Ђ Destination tree price в”Ђв”Ђ */
+.dti-price-block { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
+.dti-sub { display: none; } /* replaced by price-new in tree */
+
+/* в”Ђв”Ђ Cruise type card price в”Ђв”Ђ */
+.ct-price { display: none; } /* replaced */
+
+/* в”Ђв”Ђ Dir card (directions page) в”Ђв”Ђ */
+.dir-price-block {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+.dir-price-block .price-old { color: rgba(255,255,255,0.55); text-decoration-color: rgba(255,255,255,0.45); font-size: 11px; }
+.dir-price-block .price-new { font-size: 15px; color: #fff; }
+.dir-price-block .price-new::before {
+  background: linear-gradient(104deg,
+    rgba(255,140,60,0) 0%,
+    rgba(255,130,50,0.55) 12%,
+    rgba(255,120,40,0.65) 40%,
+    rgba(255,130,50,0.60) 70%,
+    rgba(255,140,60,0) 100%
+  );
+}
+
 /* в”Ђв”Ђ Nav в”Ђв”Ђ */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -713,4 +805,15 @@ button {
 
 .animate-fire {
   animation: fireGlow 2s ease-in-out infinite;
+}
+
+/* в”Ђв”Ђ Price system desktop scale в”Ђв”Ђ */
+@media (min-width: 881px) {
+  .price-new { font-size: 20px; padding: 2px 8px 3px 5px; }
+  .price-old { font-size: 14px; }
+  .dti-price-block { display: flex; }
+  .dir-price-block .price-new { font-size: 16px; }
+}
+@media (max-width: 880px) {
+  .dti-price-block { display: none; }
 }

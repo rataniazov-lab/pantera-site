@@ -68,6 +68,23 @@ function useCountdown() {
   return t;
 }
 
+
+// ─── Price helpers ───────────────────────────────────────────────
+function oldPrice(price: string): string {
+  const m = price.match(/\$(\d+)/);
+  if (!m) return "";
+  return "$" + Math.round(parseInt(m[1]) * 1.35 / 5) * 5;
+}
+function PriceBlock({ price, dark = false }: { price: string; dark?: boolean }) {
+  const op = oldPrice(price);
+  return (
+    <div className="price-block">
+      {op && <span className={`price-old${dark ? " price-old-dark" : ""}`}>{op}</span>}
+      <span className="price-new">{price}</span>
+    </div>
+  );
+}
+
 // ─────────────────────────── Nav ────────────────────────────────
 function Nav({ page, onNav, mob, onMob }: {
   page: Page; onNav: (p: Page) => void; mob: boolean; onMob: () => void;
@@ -195,7 +212,7 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
                       onClick={() => ["dubai","sharm","turkey","maldives","thailand","georgia"].includes(item.key) ? onDest(item.key) : onNav("directions")}>
                       <span className="dti-flag">{item.flag}</span>
                       <span className="dti-name">{item.name}</span>
-                      <span className="dti-sub">{item.sub}</span>
+                      {item.sub && <div className="dti-price-block"><PriceBlock price={item.sub} /></div>}
                       <span className="dti-arrow">→</span>
                     </button>
                   ))}
@@ -233,7 +250,7 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
                   <h3>{c.title}</h3>
                   <p>{c.sub}</p>
                   <div className="cruise-dest-footer">
-                    <span className="cruise-dest-price">{c.price}</span>
+                    <PriceBlock price={c.price} />
                     <span className="cruise-dest-btn">Подробнее →</span>
                   </div>
                 </div>
@@ -309,8 +326,12 @@ function DirectionsPage({ onDest, onNav }: { onDest:(k:string)=>void; onNav:(p:P
               <div className="dir-overlay" />
               <div className="dir-info">
                 <p className="dir-name">{d.flag} {d.name}</p>
-                <p className="dir-sub">{d.sub}</p>
               </div>
+              {d.sub && d.sub.includes("$") && (
+                <div className="dir-price-block">
+                  <PriceBlock price={d.sub} dark />
+                </div>
+              )}
             </div>
           ))}
         </div>
@@ -491,7 +512,7 @@ function CruisePage({ onNav }: { onNav:(p:Page)=>void }) {
               <div key={r.t} className="ct-card">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={r.img} alt={r.t} loading="lazy" />
-                <div className="ct-body"><h3>{r.t}</h3><p>{r.p}</p><p className="ct-price">{r.price}</p></div>
+                <div className="ct-body"><h3>{r.t}</h3><p>{r.p}</p><div style={{marginTop:10}}><PriceBlock price={r.price} /></div></div>
               </div>
             ))}
           </div>
