@@ -40,53 +40,56 @@ a { color: inherit; text-decoration: none; }
    PREMIUM PRICE SYSTEM вЂ” marker highlight
    в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ */
 
-/* Old crossed-out price вЂ” large, readable, elegant */
+/* в”Ђв”Ђ PRICE SYSTEM: inline layout, balanced typography в”Ђв”Ђ */
+
+/* Price block: old + new side by side on one line */
+.price-block {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  gap: 7px;
+}
+
+/* Old crossed-out price вЂ” same visual weight as new, readable gray */
 .price-old {
-  display: block;
-  font-size: 15px;
+  display: inline;
+  font-size: 14px;
   font-weight: 700;
-  color: #8a9ab0;
+  color: #8c9fb5;
   text-decoration: line-through;
-  text-decoration-color: #8a9ab0;
-  text-decoration-thickness: 1.5px;
+  text-decoration-color: #9b3030;
+  text-decoration-thickness: 1px;
+  text-decoration-style: solid;
   letter-spacing: 0.1px;
-  margin-bottom: 4px;
   line-height: 1;
 }
 
-/* New highlighted price вЂ” marker effect */
+/* New highlighted price вЂ” marker effect, sized to match names */
 .price-new {
   display: inline-block;
   position: relative;
-  font-size: 20px;
-  font-weight: 900;
-  color: #c8501a;
-  line-height: 1.15;
-  padding: 2px 8px 4px 5px;
+  font-size: 14px;
+  font-weight: 800;
+  color: #bf4b18;
+  line-height: 1.2;
+  padding: 1px 6px 2px 4px;
   z-index: 0;
 }
 .price-new::before {
   content: '';
   position: absolute;
-  inset: -1px -4px 0px -3px;
+  inset: -1px -3px 0px -2px;
   background: linear-gradient(104deg,
     rgba(255,210,140,0) 0%,
-    rgba(255,205,115,0.60) 8%,
-    rgba(255,215,135,0.75) 30%,
-    rgba(255,218,140,0.78) 55%,
-    rgba(255,208,120,0.65) 82%,
+    rgba(255,205,115,0.55) 8%,
+    rgba(255,215,135,0.70) 32%,
+    rgba(255,218,140,0.72) 58%,
+    rgba(255,208,120,0.58) 84%,
     rgba(255,210,140,0) 100%
   );
-  border-radius: 4px 7px 5px 6px / 6px 5px 7px 4px;
-  transform: skewX(-1.5deg) scaleY(1.08);
+  border-radius: 3px 6px 4px 5px / 5px 4px 6px 3px;
+  transform: skewX(-1.5deg) scaleY(1.06);
   z-index: -1;
-}
-
-/* Wrapper for price block вЂ” only old + new, nothing else */
-.price-block {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
 }
 
 /* в”Ђв”Ђ Cruise card price upgrade в”Ђв”Ђ */
@@ -102,7 +105,7 @@ a { color: inherit; text-decoration: none; }
 .cruise-dest-body > p { display: none; }
 
 /* в”Ђв”Ђ Destination tree price в”Ђв”Ђ */
-.dti-price-block { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.dti-price-block { display: flex; flex-direction: row; align-items: baseline; gap: 5px; }
 .dti-sub { display: none; }
 
 /* в”Ђв”Ђ Cruise type card price в”Ђв”Ђ */
@@ -119,11 +122,12 @@ a { color: inherit; text-decoration: none; }
   gap: 2px;
 }
 .dir-price-block .price-old {
-  color: rgba(255,255,255,0.65);
-  text-decoration-color: rgba(255,255,255,0.50);
+  color: rgba(255,255,255,0.68);
+  text-decoration-color: rgba(180,60,60,0.90);
+  text-decoration-thickness: 1px;
   font-size: 13px;
 }
-.dir-price-block .price-new { font-size: 16px; color: #fff; }
+.dir-price-block .price-new { font-size: 13px; color: #fff; }
 .dir-price-block .price-new::before {
   background: linear-gradient(104deg,
     rgba(255,140,60,0) 0%,
@@ -405,7 +409,7 @@ a { color: inherit; text-decoration: none; }
 .dest-tree-item:hover { background: #fff7f3; }
 .dest-tree-item:hover .dti-arrow { color: var(--accent); transform: translateX(3px); }
 .dti-flag { font-size: 18px; flex-shrink: 0; }
-.dti-name { font-size: 14px; font-weight: 700; color: var(--text); flex: 1; }
+.dti-name { font-size: 15px; font-weight: 700; color: var(--text); flex: 1; }
 .dti-sub { font-size: 12px; color: var(--text2); white-space: nowrap; }
 .dti-arrow { font-size: 14px; color: #cbd5e1; transition: all 0.2s; flex-shrink: 0; }
 .dest-tree-all {
@@ -643,8 +647,8 @@ a { color: inherit; text-decoration: none; }
 
 /* в”Ђв”Ђ Instagram custom icon в”Ђв”Ђ */
 .soc-icon { width: 18px; height: 18px; object-fit: contain; display: inline-block; vertical-align: middle; margin-right: 6px; }
-.footer-soc-icon { width: 15px; height: 15px; object-fit: contain; display: inline-block; vertical-align: middle; margin-right: 5px; filter: brightness(0) invert(1); opacity: 0.6; }
-.footer-ig-link:hover .footer-soc-icon { opacity: 1; }
+.footer-soc-icon { width: 20px; height: 20px; object-fit: contain; display: inline-block; vertical-align: middle; margin-right: 7px; opacity: 0.85; transition: opacity 0.2s, transform 0.2s; }
+.footer-ig-link:hover .footer-soc-icon { opacity: 1; transform: scale(1.1); }
 
 /* в”Ђв”Ђ Contacts в”Ђв”Ђ */
 .contacts-hero { background: linear-gradient(135deg,var(--dark),var(--dark2)); padding: 48px 0; text-align: center; }
@@ -682,12 +686,43 @@ footer { background: var(--dark); color: rgba(255,255,255,0.62); padding: 44px 2
 .f-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 9px; font-size: 12px; }
 
 /* в”Ђв”Ђ Float buttons в”Ђв”Ђ */
-.float-w { position: fixed; bottom: 24px; right: 16px; z-index: 80; display: flex; flex-direction: column; gap: 8px; align-items: flex-end; }
-.f-btn { display: flex; align-items: center; gap: 7px; padding: 10px 14px; border-radius: 46px; font-size: 13px; font-weight: 700; text-decoration: none; box-shadow: 0 3px 12px rgba(0,0,0,0.18); color: #fff; white-space: nowrap; max-width: 46px; overflow: hidden; flex-direction: row-reverse; transition: max-width 0.3s; }
-.f-btn:hover { max-width: 190px; }
-.f-ico { font-size: 18px; flex-shrink: 0; }
-.f-lbl { white-space: nowrap; opacity: 0; max-width: 0; overflow: hidden; transition: opacity 0.25s, max-width 0.3s; }
-.f-btn:hover .f-lbl { opacity: 1; max-width: 140px; }
+.float-w { position: fixed; bottom: 24px; right: 16px; z-index: 80; display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+.f-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 0; border-radius: 50px;
+  font-size: 13px; font-weight: 700; text-decoration: none;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #fff; white-space: nowrap;
+  overflow: hidden;
+  flex-direction: row-reverse;
+  max-width: 44px;
+  transition: max-width 0.32s ease, padding 0.32s ease;
+}
+.f-btn:hover { max-width: 220px; padding: 0 12px 0 0; }
+.f-ico {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,0.28));
+  transition: transform 0.2s;
+}
+.f-btn:hover .f-ico { transform: scale(1.08); }
+.f-ico img {
+  width: 44px !important; height: 44px !important;
+  object-fit: contain;
+  display: block;
+  border: none; outline: none;
+  background: none;
+  box-shadow: none;
+}
+.f-lbl {
+  white-space: nowrap; opacity: 0; max-width: 0; overflow: hidden;
+  transition: opacity 0.25s, max-width 0.32s;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  font-size: 13px; font-weight: 700; color: #fff;
+}
+.f-btn:hover .f-lbl { opacity: 1; max-width: 150px; }
 .scroll-top { position: fixed; bottom: 24px; left: 16px; z-index: 80; width: 42px; height: 42px; border-radius: 50%; background: var(--accent); color: #fff; border: none; font-size: 17px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 12px rgba(255,107,53,0.35); cursor: pointer; transition: transform 0.2s; }
 .scroll-top:hover { transform: translateY(-2px); }
 
@@ -848,8 +883,9 @@ button {
 
 /* в”Ђв”Ђ Price system desktop scale в”Ђв”Ђ */
 @media (min-width: 881px) {
-  .price-new { font-size: 22px; padding: 3px 9px 4px 6px; }
-  .price-old { font-size: 16px; }
+  .price-new { font-size: 15px; padding: 1px 7px 2px 5px; }
+  .price-old { font-size: 15px; }
+  .dti-name { font-size: 15.75px; }
   .dir-price-block .price-old { font-size: 14px; }
   .dir-price-block .price-new { font-size: 18px; }
   .dti-price-block { display: flex; }

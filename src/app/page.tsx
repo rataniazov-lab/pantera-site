@@ -70,6 +70,11 @@ function useCountdown() {
 
 
 // ─── Price helpers ───────────────────────────────────────────────
+function extractPrice(price: string): string {
+  // Extract only the number: "от $499 / чел." → "$499", "$290" → "$290"
+  const m = price.match(/\$(\d+)/);
+  return m ? "$" + m[1] : price;
+}
 function oldPrice(price: string): string {
   const m = price.match(/\$(\d+)/);
   if (!m) return "";
@@ -77,10 +82,12 @@ function oldPrice(price: string): string {
 }
 function PriceBlock({ price, dark = false }: { price: string; dark?: boolean }) {
   const op = oldPrice(price);
+  const current = extractPrice(price);
+  if (!current.includes("$")) return null;
   return (
     <div className="price-block">
       {op && <span className={`price-old${dark ? " price-old-dark" : ""}`}>{op}</span>}
-      <span className="price-new">{price}</span>
+      <span className="price-new">{current}</span>
     </div>
   );
 }
@@ -831,11 +838,11 @@ export default function Home() {
       <div className="float-w">
         {([
           ["https://t.me/vilet_support",                              "#2ca5e0",                                          "TG","Telegram"  ],
-          ["https://wa.me/998771618888",                              "#25d366",                                          "💬","WhatsApp"  ],
+          ["https://wa.me/998771618888",                              "#25d366",                                          "WA","WhatsApp"  ],
           ["https://www.instagram.com/tury_tashkent/",               "linear-gradient(135deg,#f09433,#dc2743,#bc1888)",  "IG","Instagram" ],
         ] as [string,string,string,string][]).map(([href,bg,ico,lbl]) => (
           <a key={lbl} className="f-btn" href={href} target="_blank" rel="noopener noreferrer" style={{ background:bg }}>
-            <span className="f-ico">{ico === "IG" ? <img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538594/Instagram_qdbqub.png" alt="Instagram" style={{width:20,height:20,objectFit:"contain"}} /> : ico === "TG" ? <img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" style={{width:20,height:20,objectFit:"contain"}} /> : ico}</span>
+            <span className="f-ico">{ico === "IG" ? <img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538594/Instagram_qdbqub.png" alt="Instagram" style={{width:20,height:20,objectFit:"contain"}} /> : ico === "TG" ? <img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" style={{width:20,height:20,objectFit:"contain"}} /> : ico === "WA" ? <img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779539173/WhatsApp_wln0nb.png" alt="WhatsApp" style={{width:20,height:20,objectFit:"contain"}} /> : ico}</span>
             <span className="f-lbl">{lbl}</span>
           </a>
         ))}
