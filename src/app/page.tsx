@@ -217,10 +217,10 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
           <p className="section-sub">Плавучий отель 5★ — вы спите, а вокруг меняются страны</p>
           <div className="cruise-dest-grid">
             {[
-              { img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779520521/%D0%9A%D0%90%D0%A0%D0%9B%D0%9E%D0%92%D0%AB_e4xtis.png", title:"Круиз по ОАЭ",    sub:"Дубай, Абу-Даби, Оман", price:"от $499 / чел.", emoji:"🇦🇪" },
-              { img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779520521/%D0%A1%D0%A2%D0%90%D0%9C%D0%91%D0%A3%D0%9B_xak5js.png", title:"Круиз по Турции", sub:"Стамбул, Измир, Бодрум", price:"от $549 / чел.", emoji:"🇹🇷" },
-              { img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779487245/tai_at5qsu.png",                                         title:"Круиз по Азии",   sub:"Таиланд, Малайзия, Сингапур", price:"от $699 / чел.", emoji:"🌏" },
-              { img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70",                                              title:"Круиз по Европе", sub:"Италия, Греция, Испания", price:"от $599 / чел.", emoji:"🇪🇺" },
+              { img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779532300/cr1_kmn3wu.png", title:"Круиз по ОАЭ",    sub:"Дубай, Абу-Даби, Оман",       price:"от $499 / чел.", emoji:"🇦🇪" },
+              { img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779532300/cr3_hsa6hc.png", title:"Круиз по Турции", sub:"Стамбул, Измир, Бодрум",       price:"от $549 / чел.", emoji:"🇹🇷" },
+              { img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779532300/cr4_dosuax.png", title:"Круиз по Азии",   sub:"Таиланд, Малайзия, Сингапур", price:"от $699 / чел.", emoji:"🌏" },
+              { img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779532300/cr2_gosy4b.png", title:"Круиз по Европе", sub:"Италия, Греция, Испания",       price:"от $599 / чел.", emoji:"🇪🇺" },
             ].map(c => (
               <div key={c.title} className="cruise-dest-card" onClick={() => onNav("cruise")}>
                 <div className="cruise-dest-img">

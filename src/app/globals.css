@@ -573,14 +573,14 @@ footer { background: var(--dark); color: rgba(255,255,255,0.62); padding: 44px 2
   .hero-stat strong { font-size: 24px; }
   .hero-content { padding: 44px 20px; }
 
-  /* Ticker Bar +2%, РїРѕРґРЅСЏС‚ РЅР° 10% РІС‹С€Рµ */
+  /* Ticker Bar +2% size, +5% fonts, РїРѕРґРЅСЏС‚ РЅР° 10% РІС‹С€Рµ */
   .hot-strip { padding: 18.4px 40px; gap: 22px; transform: translateY(-10%); }
-  .hot-badge { font-size: 13.3px; padding: 4px 14px; }
-  .hot-text { font-size: 16.3px; }
+  .hot-badge { font-size: 13.97px; padding: 4px 14px; }
+  .hot-text { font-size: 17.1px; }
   .cd-box { min-width: 55px; padding: 7.1px 12px; border-radius: 8px; }
-  .cd-box strong { font-size: 22.4px; }
-  .cd-box span { font-size: 11.2px; }
-  .cd-sep { font-size: 22.4px; }
+  .cd-box strong { font-size: 23.5px; }
+  .cd-box span { font-size: 11.76px; }
+  .cd-sep { font-size: 23.5px; }
 }
 @media (max-width: 580px) {
   .footer-grid { grid-template-columns: 1fr; }
