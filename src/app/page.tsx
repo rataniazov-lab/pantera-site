@@ -158,23 +158,23 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
           <span className="section-tag">Направления</span>
           <h2 className="section-title">Куда полетим?</h2>
           <p className="section-sub">14 направлений с полными гидами — отели, пляжи, культура, советы</p>
-          <div className="cards-grid">
+          <div className="preview-grid">
             {DESTS_PREVIEW.map(d => (
-              <div key={d.key} className="card" onClick={() => onDest(d.key)}>
-                <div className="card-img">
+              <div key={d.key} className="preview-card" onClick={() => onDest(d.key)}>
+                <div className="preview-card-img">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={d.img} alt={d.title} loading="lazy" />
                 </div>
-                <div className="card-body">
+                <div className="preview-card-body">
                   <h3>{d.flag} {d.title}</h3>
                   <p>{d.sub}</p>
                   <span className="card-link">Полный гид →</span>
                 </div>
               </div>
             ))}
-            <div className="card" onClick={() => onNav("directions")}>
-              <div className="card-img" style={{ background:"linear-gradient(135deg,#0d1b2a,#1a2b3c)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:44 }}>🌍</div>
-              <div className="card-body">
+            <div className="preview-card" onClick={() => onNav("directions")}>
+              <div className="preview-card-img" style={{ background:"linear-gradient(135deg,#0d1b2a,#1a2b3c)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:44 }}>🌍</div>
+              <div className="preview-card-body">
                 <h3>Все 14 направлений</h3>
                 <p>Мальдивы, Таиланд, Грузия, Китай, Европа...</p>
                 <span className="card-link">Смотреть все →</span>
