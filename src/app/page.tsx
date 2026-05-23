@@ -129,7 +129,12 @@ function Nav({ page, onNav, mob, onMob }: {
                 <button key={l} className={`lang-btn${lang === l ? " active" : ""}`} onClick={() => setLang(l)}>{l}</button>
               ))}
             </div>
-            <button className="nav-cta" onClick={() => onNav("contacts")}>Оставить заявку</button>
+            <button className="nav-cta nav-cta-desktop" onClick={() => onNav("contacts")}>Оставить заявку</button>
+            <button className="hamburger" onClick={onMob}>
+              <span style={mob ? { transform:"rotate(45deg) translate(5px,5px)" } : {}} />
+              <span style={mob ? { opacity:0 } : {}} />
+              <span style={mob ? { transform:"rotate(-45deg) translate(5px,-5px)" } : {}} />
+            </button>
           </div>
         </div>
 
@@ -147,6 +152,7 @@ function Nav({ page, onNav, mob, onMob }: {
             </button>
             {uzOpen && (
               <div className="uz-menu">
+                <div className="uz-menu-inner">
                 <div className="uz-menu-label">Ancient Silk Road Cities</div>
                 {UZ_CITIES.map(c => (
                   <button key={c.name} className="uz-item" onClick={() => onNav("contacts")}>
@@ -155,6 +161,7 @@ function Nav({ page, onNav, mob, onMob }: {
                 ))}
                 <div className="uz-menu-footer">
                   <button className="uz-all" onClick={() => onNav("directions")}>View all Uzbekistan tours →</button>
+                </div>
                 </div>
               </div>
             )}
@@ -178,12 +185,7 @@ function Nav({ page, onNav, mob, onMob }: {
         ))}
       </div>
 
-      {/* hamburger */}
-      <button className="hamburger" style={{ position:"fixed", top:10, right:16, zIndex:101 }} onClick={onMob}>
-        <span style={mob ? { transform:"rotate(45deg) translate(5px,5px)" } : {}} />
-        <span style={mob ? { opacity:0 } : {}} />
-        <span style={mob ? { transform:"rotate(-45deg) translate(5px,-5px)" } : {}} />
-      </button>
+
     </>
   );
 }
