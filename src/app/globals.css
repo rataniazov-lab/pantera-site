@@ -31,6 +31,10 @@ a { color: inherit; text-decoration: none; }
 /* в”Ђв”Ђ Layout в”Ђв”Ђ */
 .site-container { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
 
+/* в”Ђв”Ђ Page top padding (nav offset) в”Ђв”Ђ */
+.page-top { padding-top: 60px; }
+@media (min-width: 881px) { .page-top { padding-top: 80px; } }
+
 /* в”Ђв”Ђ Nav в”Ђв”Ђ */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -417,6 +421,26 @@ footer { background: var(--dark); color: rgba(255,255,255,0.62); padding: 44px 2
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .cruise-box { grid-template-columns: 1fr; }
   .cruise-emoji { display: none; }
+}
+
+@media (min-width: 881px) {
+  .nav {
+    height: 80px;
+    padding: 0 40px;
+  }
+  .nav-logo img { height: 48px; }
+  .nav-logo-text .name { font-size: 17px; }
+  .nav-logo-text .sub { font-size: 11px; }
+  .nav-link { font-size: 15px; padding: 8px 14px; }
+  .nav-cta { font-size: 15px; padding: 10px 22px; }
+
+  .hot-strip { padding: 18px 40px; gap: 22px; }
+  .hot-badge { font-size: 13px; padding: 4px 14px; }
+  .hot-text { font-size: 16px; }
+  .cd-box { min-width: 54px; padding: 7px 12px; border-radius: 8px; }
+  .cd-box strong { font-size: 22px; }
+  .cd-box span { font-size: 11px; }
+  .cd-sep { font-size: 22px; }
 }
 @media (max-width: 580px) {
   .footer-grid { grid-template-columns: 1fr; }

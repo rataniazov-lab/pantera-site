@@ -115,7 +115,7 @@ function Nav({ page, onNav, mob, onMob }: {
 function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>void }) {
   const cd = useCountdown();
   return (
-    <div style={{ paddingTop: 60 }}>
+    <div className="page-top">
       {/* Hero */}
       <div className="hero">
         <div className="hero-bg" />
@@ -242,7 +242,7 @@ function DirectionsPage({ onDest, onNav }: { onDest:(k:string)=>void; onNav:(p:P
   const [filter, setFilter] = useState("all");
   const visible = DIR_CARDS.filter(d => filter === "all" || d.cat.includes(filter));
   return (
-    <div style={{ paddingTop:60 }}>
+    <div className="page-top">
       <div className="dir-hero">
         <div className="site-container">
           <span className="section-tag">Все направления</span>
@@ -287,7 +287,7 @@ function DestPage({ destKey, onBack, onNav }: { destKey:string; onBack:()=>void;
   const topHotels     = ["Jumeirah Beach Hotel","Madinat Jumeirah","Sofitel The Palm","Address Beach Resort","Anantara Palm"];
 
   return (
-    <div style={{ paddingTop:60 }}>
+    <div className="page-top">
       <div className="dest-hero">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={d.img} alt={d.title} loading="lazy" />
@@ -408,7 +408,7 @@ function CruisePage({ onNav }: { onNav:(p:Page)=>void }) {
     { x:"🍔",   type:"true",  title:"«На круизе вкусно кормят»",  p:"Завтрак-обед-ужин 24/7 включены. Люди набирают 2-3 кг за круиз 😄" },
   ];
   return (
-    <div style={{ paddingTop:60 }}>
+    <div className="page-top">
       <div className="cruise-hero-page">
         <div className="site-container">
           <div className="cruise-badges">
@@ -469,7 +469,7 @@ function CruisePage({ onNav }: { onNav:(p:Page)=>void }) {
 // ─────────────────────────── Videos ─────────────────────────────
 function VideosPage() {
   return (
-    <div style={{ paddingTop:60 }}>
+    <div className="page-top">
       <div style={{ background:"linear-gradient(135deg,#0d1b2a,#1a2b3c)", padding:"48px 0", textAlign:"center" }}>
         <div className="site-container">
           <span className="section-tag" style={{ color:"#ffd166" }}>Видеообзоры</span>
@@ -506,7 +506,7 @@ function ContactsPage() {
     ["⏰","rgba(34,197,94,0.1)","Режим работы",undefined,"10:00 – 21:00, ежедневно"],
   ];
   return (
-    <div style={{ paddingTop:60 }}>
+    <div className="page-top">
       <div className="contacts-hero">
         <div className="site-container"><h1>Контакты</h1><p>Свяжитесь с нами — ответим в течение 15 минут</p></div>
       </div>
