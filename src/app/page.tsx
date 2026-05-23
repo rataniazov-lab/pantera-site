@@ -152,34 +152,59 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
         </button>
       </div>
 
-      {/* Directions preview */}
+      {/* Directions tree */}
       <div className="sec">
         <div className="site-container">
           <span className="section-tag">Направления</span>
           <h2 className="section-title">Куда полетим?</h2>
-          <p className="section-sub">14 направлений с полными гидами — отели, пляжи, культура, советы</p>
-          <div className="preview-grid">
-            {DESTS_PREVIEW.map(d => (
-              <div key={d.key} className="preview-card" onClick={() => onDest(d.key)}>
-                <div className="preview-card-img">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={d.img} alt={d.title} loading="lazy" />
-                </div>
-                <div className="preview-card-body">
-                  <h3>{d.flag} {d.title}</h3>
-                  <p>{d.sub}</p>
-                  <span className="card-link">Полный гид →</span>
+          <p className="section-sub">14 направлений из Ташкента — нажмите чтобы открыть полный гид</p>
+          <div className="dest-tree">
+            {[
+              { label:"🏖️ Пляжный отдых", items:[
+                { key:"dubai",    flag:"🇦🇪", name:"Дубай",          sub:"ОАЭ · от $499" },
+                { key:"sharm",    flag:"🇪🇬", name:"Шарм Эль Шейх",  sub:"Египет · от $380" },
+                { key:"turkey",   flag:"🇹🇷", name:"Турция",          sub:"Стамбул, Анталья · от $350" },
+                { key:"maldives", flag:"🇲🇻", name:"Мальдивы",        sub:"от $1200" },
+                { key:"thailand", flag:"🇹🇭", name:"Таиланд",         sub:"Пхукет · от $650" },
+                { key:"vietnam",  flag:"🇻🇳", name:"Вьетнам",         sub:"от $600" },
+                { key:"issiyk",   flag:"🇰🇬", name:"Иссык-Куль",     sub:"от $180" },
+              ]},
+              { label:"🏙️ Города и культура", items:[
+                { key:"turkey",   flag:"🇹🇷", name:"Стамбул",         sub:"Турция · от $350" },
+                { key:"georgia",  flag:"🇬🇪", name:"Грузия",          sub:"Тбилиси, Батуми · от $290" },
+                { key:"baku",     flag:"🇦🇿", name:"Азербайджан",     sub:"Баку · от $250" },
+                { key:"qatar",    flag:"🇶🇦", name:"Катар",           sub:"Доха" },
+                { key:"karlovy",  flag:"🇨🇿", name:"Карловы Вары",    sub:"Чехия" },
+              ]},
+              { label:"💆 Лечение и здоровье", items:[
+                { key:"naftalan", flag:"🇦🇿", name:"Нафталан",        sub:"Азербайджан" },
+                { key:"karlovy",  flag:"🇨🇿", name:"Карловы Вары",    sub:"Чехия" },
+                { key:"turkey",   flag:"🇹🇷", name:"Медтуризм Турция",sub:"Клиники Стамбула" },
+              ]},
+              { label:"🏔️ Природа и горы", items:[
+                { key:"georgia",  flag:"🇬🇪", name:"Грузия",          sub:"Казбеги, Сванетия · от $290" },
+                { key:"issiyk",   flag:"🇰🇬", name:"Иссык-Куль",     sub:"Кыргызстан · от $180" },
+                { key:"vietnam",  flag:"🇻🇳", name:"Вьетнам",         sub:"от $600" },
+              ]},
+            ].map(group => (
+              <div key={group.label} className="dest-tree-group">
+                <div className="dest-tree-label">{group.label}</div>
+                <div className="dest-tree-items">
+                  {group.items.map((item, i) => (
+                    <button key={i} className="dest-tree-item"
+                      onClick={() => ["dubai","sharm","turkey","maldives","thailand","georgia"].includes(item.key) ? onDest(item.key) : onNav("directions")}>
+                      <span className="dti-flag">{item.flag}</span>
+                      <span className="dti-name">{item.name}</span>
+                      <span className="dti-sub">{item.sub}</span>
+                      <span className="dti-arrow">→</span>
+                    </button>
+                  ))}
                 </div>
               </div>
             ))}
-            <div className="preview-card" onClick={() => onNav("directions")}>
-              <div className="preview-card-img" style={{ background:"linear-gradient(135deg,#0d1b2a,#1a2b3c)", display:"flex", alignItems:"center", justifyContent:"center", fontSize:44 }}>🌍</div>
-              <div className="preview-card-body">
-                <h3>Все 14 направлений</h3>
-                <p>Мальдивы, Таиланд, Грузия, Китай, Европа...</p>
-                <span className="card-link">Смотреть все →</span>
-              </div>
-            </div>
+            <button className="dest-tree-all" onClick={() => onNav("directions")}>
+              🌍 Смотреть все 14 направлений →
+            </button>
           </div>
         </div>
       </div>
