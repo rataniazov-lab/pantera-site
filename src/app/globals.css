@@ -32,7 +32,7 @@ a { color: inherit; text-decoration: none; }
 .site-container { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
 
 /* в”Ђв”Ђ Page top padding (nav offset) в”Ђв”Ђ */
-.page-top { padding-top: 60px; }
+.page-top { padding-top: 58px; }
 @media (min-width: 881px) { .page-top { padding-top: 100px; } }
 
 
@@ -335,7 +335,7 @@ a { color: inherit; text-decoration: none; }
 
 /* в”Ђв”Ђ Hero в”Ђв”Ђ */
 .hero {
-  position: relative; min-height: calc(100vh - 60px);
+  position: relative; min-height: calc(100vh - 58px);
   background: linear-gradient(160deg, #0d1b2a 0%, #1a3550 100%);
   display: flex; align-items: center; justify-content: center; overflow: hidden;
 }
@@ -850,7 +850,8 @@ footer { background: var(--dark); color: rgba(255,255,255,0.62); padding: 44px 2
 @media (max-width: 880px) {
   .nav-bottom { display: none; }
   .hamburger { display: flex; }
-  .nav-top { padding: 8px 16px; }
+  .nav-top { padding: 8px 16px; border-bottom: none; }
+  .page-top { padding-top: 56px; }
   .nav-cta-desktop { display: none; }
   .lang-switcher { display: none; }
   .contacts-grid { grid-template-columns: 1fr; }
@@ -1091,4 +1092,102 @@ button {
   .visa-dest-grid { grid-template-columns: 1fr; }
   .vd-card-full { grid-column: 1; }
   .visa-list-compact { grid-template-columns: 1fr; }
+}
+
+/* в”Ђв”Ђ Cruise routes grid в”Ђв”Ђ */
+.cruise-filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 24px; }
+.cruise-routes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+.cruise-route-card {
+  background: #fff; border-radius: var(--radius);
+  border: 1px solid #edf2f7;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow: hidden; cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  display: flex; flex-direction: column;
+}
+.cruise-route-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.11); }
+.cruise-route-img { position: relative; height: 190px; overflow: hidden; }
+.cruise-route-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s; }
+.cruise-route-card:hover .cruise-route-img img { transform: scale(1.04); }
+.cruise-route-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,27,42,0.55) 0%, transparent 55%); }
+.cruise-route-tags { position: absolute; top: 10px; left: 10px; display: flex; gap: 5px; flex-wrap: wrap; }
+.cruise-tag { background: rgba(255,255,255,0.18); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.25); color: #fff; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 20px; }
+.cruise-route-body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+.cruise-route-body h3 { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 5px; }
+.crb-region { font-size: 12px; color: var(--text2); margin-bottom: 10px; line-height: 1.5; }
+.crb-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.crb-meta span { font-size: 11px; color: var(--text2); }
+.crb-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+.crb-book { font-size: 12px; font-weight: 700; color: var(--accent); transition: transform 0.2s; }
+.cruise-route-card:hover .crb-book { transform: translateX(3px); }
+@media (max-width: 700px) { .cruise-routes-grid { grid-template-columns: 1fr; } }
+
+/* в”Ђв”Ђ Sanatorium page в”Ђв”Ђ */
+.san-hero {
+  background: linear-gradient(135deg, #0a1f0a, #0d2d1a);
+  padding: 48px 0 36px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.san-hero h1 { color: #fff; font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 900; margin: 8px 0 10px; }
+.san-hero p { color: rgba(255,255,255,0.6); font-size: 14px; max-width: 520px; }
+
+.san-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.san-card {
+  background: #fff; border-radius: var(--radius);
+  border: 1px solid #edf2f7; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  overflow: hidden; cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.san-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.11); }
+.san-card-img { position: relative; height: 170px; overflow: hidden; }
+.san-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.35s; }
+.san-card:hover .san-card-img img { transform: scale(1.04); }
+.san-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,27,42,0.6) 0%, transparent 55%); }
+.san-card-country { position: absolute; bottom: 10px; left: 12px; color: #fff; font-size: 12px; font-weight: 700; }
+.san-card-body { padding: 14px 16px 16px; }
+.san-card-body h3 { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.san-card-spec { font-size: 11px; color: var(--text2); margin-bottom: 10px; }
+.san-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 12px; }
+.san-tag { background: rgba(34,197,94,0.1); color: #16a34a; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; }
+.san-card-footer { display: flex; align-items: center; justify-content: space-between; }
+.san-card-nights { font-size: 11px; color: var(--text2); }
+
+/* Sanatorium detail */
+.san-detail-hero { position: relative; height: 320px; overflow: hidden; }
+.san-detail-hero img { width: 100%; height: 100%; object-fit: cover; }
+.san-detail-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(13,27,42,0.85) 0%, rgba(13,27,42,0.3) 60%); }
+.san-detail-content { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); padding: 28px 20px; width: 100%; }
+.san-detail-content h1 { color: #fff; font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 900; margin: 10px 0 6px; }
+.san-detail-content p { color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 12px; }
+.san-detail-grid { display: grid; grid-template-columns: 1fr 300px; gap: 24px; }
+.san-detail-main {}
+.san-booking-card { background: #fff; border: 1px solid #e8eef5; border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); position: sticky; top: 110px; }
+.san-booking-price { margin-bottom: 12px; }
+.san-booking-meta { color: var(--text2); font-size: 13px; margin-bottom: 16px; display: flex; gap: 12px; }
+
+@media (max-width: 900px) { .san-grid { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 580px) { .san-grid { grid-template-columns: 1fr; } .san-detail-grid { grid-template-columns: 1fr; } }
+
+/* в”Ђв”Ђ Sanatorium rooms table в”Ђв”Ђ */
+.san-rooms-table { display: flex; flex-direction: column; gap: 0; margin-top: 12px; border: 1px solid #e8eef5; border-radius: 10px; overflow: hidden; }
+.san-rooms-header { display: grid; grid-template-columns: 2fr 1.2fr 1fr; gap: 0; background: #f8fafc; padding: 9px 14px; font-size: 11px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
+.san-rooms-row { display: grid; grid-template-columns: 2fr 1.2fr 1fr; gap: 0; padding: 10px 14px; border-top: 1px solid #f1f5f9; font-size: 13px; transition: background 0.15s; }
+.san-rooms-row:hover { background: #fff7f3; }
+.san-rooms-row span { color: var(--text); line-height: 1.4; }
+.san-room-dates { color: var(--text2); font-size: 12px; }
+.san-room-price { font-weight: 800; color: var(--accent); white-space: nowrap; }
+.san-transfer-box { background: rgba(59,130,246,0.07); border: 1px solid rgba(59,130,246,0.18); border-radius: 10px; padding: 12px 16px; font-size: 13px; color: var(--text); margin-top: 0; }
+@media (max-width: 580px) {
+  .san-rooms-header { grid-template-columns: 1fr 1fr; }
+  .san-rooms-header span:first-child { display: none; }
+  .san-rooms-row { grid-template-columns: 1fr 1fr; }
+  .san-rooms-row span:first-child { grid-column: 1/-1; font-weight: 600; margin-bottom: 4px; }
 }

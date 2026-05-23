@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 
-type Page = "home" | "directions" | "dest" | "cruise" | "videos" | "contacts" | "visa" | "visadest";
+type Page = "home" | "directions" | "dest" | "cruise" | "sanatorium" | "videos" | "contacts" | "visa" | "visadest";
 
 const LOGO = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779385406/pantera_luxe_logo_v0gbmo.png";
 
@@ -107,7 +107,7 @@ function Nav({ page, onNav, mob, onMob }: {
   const [lang, setLang] = useState<"RU"|"UZ"|"EN"|"ZH">("RU");
   const [uzOpen, setUzOpen] = useState(false);
   const links: [Page, string][] = [
-    ["home","Главная"], ["directions","Направления"], ["cruise","Круизы"], ["videos","Видео"],
+    ["home","Главная"], ["directions","Направления"], ["cruise","Круизы"], ["sanatorium","🏥 Санаторий"], ["videos","Видео"],
   ];
   return (
     <>
@@ -174,7 +174,7 @@ function Nav({ page, onNav, mob, onMob }: {
 
       <div className={`mob-menu${mob ? " open" : ""}`}>
         <button className="mob-close" onClick={onMob}>✕</button>
-        {([...links, ["contacts","Контакты"]] as [Page,string][]).map(([p,l]) => (
+        {([...links, ["visa","🛂 Визовая поддержка"], ["contacts","Контакты"]] as [Page,string][]).map(([p,l]) => (
           <button key={p} className="mob-link" onClick={() => { onNav(p); onMob(); }}>{l}</button>
         ))}
         <div className="mob-divider" />
@@ -522,68 +522,92 @@ function DestPage({ destKey, onBack, onNav }: { destKey:string; onBack:()=>void;
 }
 
 // ─────────────────────────── Cruise ─────────────────────────────
+const CRUISE_ROUTES = [
+  {
+    img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70",
+    t:"🌊 Средиземноморье", region:"Испания · Италия · Греция · Франция",
+    nights:"7–14 ночей", ship:"MSC Sinfonia / MSC Grandiosa", port:"Барселона",
+    tags:["Культура","Пляж","Гастрономия"], price:"от $599 / чел."
+  },
+  {
+    img:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=70",
+    t:"🇦🇪 ОАЭ и Персидский залив", region:"Дубай · Абу-Даби · Оман · Катар · Бахрейн",
+    nights:"7 ночей", ship:"MSC World Europa", port:"Дубай",
+    tags:["Роскошь","Шопинг","Архитектура"], price:"от $499 / чел."
+  },
+  {
+    img:"https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=70",
+    t:"🌏 Азия — Дальний Восток", region:"Шанхай · Япония · Южная Корея · Тайвань",
+    nights:"5–10 ночей", ship:"MSC Bellissima", port:"Шанхай",
+    tags:["Культура","Технологии","Гастрономия"], price:"от $685 / чел."
+  },
+];
+
 function CruisePage({ onNav }: { onNav:(p:Page)=>void }) {
-  const cruiseRoutes = [
-    { img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=65", t:"🌊 Средиземноморье", p:"Испания, Италия, Греция. 7-14 ночей.", price:"от $599 / чел." },
-    { img:"https://images.unsplash.com/photo-1559494007-9f5847c49d94?w=500&q=65",   t:"🏝️ Карибские острова",p:"Ямайка, Барбадос, Мексика.",            price:"от $699 / чел." },
-    { img:"https://images.unsplash.com/photo-1531366936337-7c912a4589a7?w=500&q=65", t:"🧊 Норвежские фьорды",p:"Северное сияние, айсберги.",             price:"от $899 / чел." },
-    { img:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&q=65",    t:"🇦🇪 ОАЭ и Аравия",   p:"Дубай, Абу-Даби, Оман.",                 price:"от $499 / чел." },
-  ];
-  const myths = [
-    { x:"🚢💥", type:"false", title:"«Корабль может утонуть»",   p:"Современные лайнеры — самые безопасные суда. 27 уровней защиты." },
-    { x:"👴",   type:"false", title:"«Круиз для пенсионеров»",    p:"Norwegian, MSC — ночные клубы, аквапарки, казино на борту." },
-    { x:"💸",   type:"false", title:"«Круиз очень дорогой»",      p:"Средиземноморье 7 ночей от $599 — проживание и 5 стран." },
-    { x:"🍔",   type:"true",  title:"«На круизе вкусно кормят»",  p:"Завтрак-обед-ужин 24/7 включены. Люди набирают 2-3 кг за круиз 😄" },
-  ];
+  const [filter, setFilter] = useState("Все");
+  const filters = ["Все","Пляж","Культура","Роскошь","Гастрономия","Технологии"];
+  const visible = filter === "Все" ? CRUISE_ROUTES : CRUISE_ROUTES.filter(r => r.tags.includes(filter));
+
   return (
     <div className="page-top">
       <div className="cruise-hero-page">
         <div className="site-container">
           <div className="cruise-badges">
-            {["🌊 Средиземноморье","🏝️ Карибы","🧊 Норвегия","🗺️ Кругосветка"].map(b => <span key={b} className="cruise-badge">{b}</span>)}
+            {["🌊 Средиземноморье","🇦🇪 ОАЭ и Персидский залив","🌏 Азия"].map(b => <span key={b} className="cruise-badge">{b}</span>)}
           </div>
           <h1>🚢 Круизы по всему миру</h1>
-          <p>27 миллионов человек каждый год выбирают круизы. Пока вы читаете — 400 000 плывут на плавучих отелях с видом на закат.</p>
+          <p>27 миллионов человек каждый год выбирают круизы. 3 направления из Ташкента — лучшие лайнеры MSC.</p>
           <button className="btn-primary" onClick={() => onNav("contacts")}>Забронировать круиз →</button>
         </div>
       </div>
 
-      <div className="site-container" style={{ padding:"44px 20px 60px" }}>
+      <div className="site-container" style={{ padding:"36px 20px 60px" }}>
+
         <div className="fomo-box">
           <span className="fi">⚡</span>
-          <div><h3>Вы теряете лучшие годы без круизов</h3><p>Средний возраст круизного пассажира — <strong>46 лет</strong>. На молодёжных круизах MSC — <strong>28 лет</strong>.</p></div>
+          <div><h3>Всё включено — отель + транспорт + 5 стран</h3><p>Просыпаетесь в новой стране каждый день. Один чемодан, ноль пересадок.</p></div>
         </div>
 
-        <span className="section-tag">Разрушаем мифы</span>
-        <h2 className="section-title">«Я думал, круиз — это как Титаник»</h2>
-        <div className="myth-grid">
-          {myths.map(m => (
-            <div key={m.title} className="myth-card">
-              <div className="mx">{m.x}</div>
-              <div className={`myth-label ${m.type}`}>{m.type==="true" ? "ФАКТ ✓" : "МИФ"}</div>
-              <h3>{m.title}</h3>
-              <p>{m.p}</p>
+        <span className="section-tag">Маршруты</span>
+        <h2 className="section-title">Куда плыть?</h2>
+
+        <div className="cruise-filters">
+          {filters.map(f => (
+            <button key={f} className={`filter-btn${filter===f?" active":""}`} onClick={() => setFilter(f)}>{f}</button>
+          ))}
+        </div>
+
+        <div className="cruise-routes-grid">
+          {visible.map(r => (
+            <div key={r.t} className="cruise-route-card" onClick={() => onNav("contacts")}>
+              <div className="cruise-route-img">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={r.img} alt={r.t} loading="lazy" />
+                <div className="cruise-route-overlay" />
+                <div className="cruise-route-tags">
+                  {r.tags.map(tag => <span key={tag} className="cruise-tag">{tag}</span>)}
+                </div>
+              </div>
+              <div className="cruise-route-body">
+                <h3>{r.t}</h3>
+                <p className="crb-region">{r.region}</p>
+                <div className="crb-meta">
+                  <span>🚢 {r.ship}</span>
+                  <span>🌙 {r.nights}</span>
+                  <span>⚓ {r.port}</span>
+                </div>
+                <div className="crb-footer">
+                  <PriceBlock price={r.price} />
+                  <span className="crb-book">Забронировать →</span>
+                </div>
+              </div>
             </div>
           ))}
         </div>
 
-        <div style={{ marginTop:40 }}>
-          <span className="section-tag">Маршруты</span>
-          <h2 className="section-title">Куда плыть?</h2>
-          <div className="cruise-type-grid">
-            {cruiseRoutes.map(r => (
-              <div key={r.t} className="ct-card">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={r.img} alt={r.t} loading="lazy" />
-                <div className="ct-body"><h3>{r.t}</h3><p>{r.p}</p><div style={{marginTop:10}}><PriceBlock price={r.price} /></div></div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="cta-banner">
+        <div className="cta-banner" style={{ marginTop:40 }}>
           <h3>🚢 Готовы выйти в море?</h3>
-          <p>Более 300 клиентов из Ташкента уже плавали с нами.</p>
+          <p>Более 300 клиентов из Ташкента уже плавали с нами. Подберём маршрут под ваш бюджет.</p>
           <div className="cta-btns">
             <button className="btn-primary" onClick={() => onNav("contacts")}>Забронировать круиз</button>
             <a className="btn-outline" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer"><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" className="soc-icon" />Telegram</a>
@@ -885,6 +909,7 @@ export default function Home() {
         {page === "directions" && <DirectionsPage onDest={openDest} onNav={nav} />}
         {page === "dest"       && <DestPage       destKey={destKey} onBack={() => nav("directions")} onNav={nav} />}
         {page === "cruise"     && <CruisePage     onNav={nav} />}
+        {page === "sanatorium" && <SanatoriumPage onNav={nav} />}
         {page === "videos"     && <VideosPage />}
         {page === "contacts"   && <ContactsPage />}
         {page === "visa"       && <VisaPage       onNav={nav} onVisaDest={(k) => { setDestKey(k); nav("visadest"); }} />}
@@ -1136,6 +1161,250 @@ function VisaDestPage({ destKey, onBack, onNav }: { destKey:string; onBack:()=>v
           <div className="cta-btns">
             <button className="btn-primary" onClick={() => onNav("contacts")}>Оставить заявку</button>
             <a className="btn-outline" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer">💬 Telegram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─────────────────────────── Sanatorium ─────────────────────────
+const SANATORIUMS = [
+  {
+    key:"zheleznov",
+    flag:"🇷🇺", name:"Железноводск", country:"Россия · КМВ",
+    img:"https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=70",
+    spec:"Бальнеология · Минеральные воды · КМВ",
+    tags:["Суставы","ЖКТ","Сердечно-сосудистые","Реабилитация"],
+    desc:"Курортный город Кавказских Минеральных Вод. Три ведущих санатория с полным санаторно-курортным лечением, шведским столом и бассейном. Трансфер аэропорт–отель–аэропорт включён.",
+    nights:"10–14 ночей", price:"от $2 470 / 2 чел.",
+    includes:["Проживание в номере","3-разовое питание (шведский стол)","Санаторно-курортное лечение","Бассейн и тренажёрный зал","Трансфер аэропорт–отель (бизнес-класс)"],
+    hotels:[
+      {
+        name:"«Машук Аква-Терм» санаторий",
+        rooms:[
+          { type:"Стандарт 2-мест. 1-комн. (корпус А,Б)", dates:"10.06–20.06.2026", price:"~$2 470" },
+          { type:"Джуниор Сюит 2-мест. 1-комн. (корпус С)", dates:"10.06–20.06.2026", price:"~$2 690" },
+          { type:"Стандарт 2-мест. 1-комн. (корпус А,Б)", dates:"10.06–24.06.2026", price:"~$3 470" },
+          { type:"Джуниор Сюит 2-мест. 1-комн. (корпус С)", dates:"10.06–24.06.2026", price:"~$3 750" },
+        ],
+        includes:"Проживание, 3-разовое питание «шведский стол», санаторно-курортное лечение, бассейн"
+      },
+      {
+        name:"«Плаза СПА Железноводск» санаторий 4★",
+        rooms:[
+          { type:"Стандарт 2-мест. 1-комн.", dates:"10.06–20.06.2026", price:"~$2 555" },
+          { type:"Стандарт 2-мест. 1-комн. (Бештау)", dates:"10.06–20.06.2026", price:"~$2 730" },
+          { type:"Стандарт 2-мест. 1-комн.", dates:"10.06–24.06.2026", price:"~$3 560" },
+          { type:"Стандарт 2-мест. 1-комн. (Бештау)", dates:"10.06–24.06.2026", price:"~$3 805" },
+        ],
+        includes:"САНКУР базовый: проживание, 3-разовое питание «шведский стол», лечение. Бесплатно: бассейн, тренажёрный зал, детская комната, банный комплекс, интернет"
+      },
+      {
+        name:"«Источник» санаторий 5★",
+        rooms:[
+          { type:"Джуниор 2-мест. 1-комн. (вид на Бештау)", dates:"10.06–20.06.2026", price:"~$3 070" },
+          { type:"Джуниор 2-мест. 1-комн. (вид на Бештау)", dates:"10.06–24.06.2026", price:"~$4 300" },
+        ],
+        includes:"Проживание, 3-разовое питание (шв.стол), лечение по программе, Wi-Fi, анимационные программы"
+      },
+    ],
+    transfer:"Трансфер аэропорт–отель–аэропорт: бизнес-класс (Toyota Camry) — ~$165"
+  },
+  {
+    key:"naftalan",
+    flag:"🇦🇿", name:"Нафталан", country:"Азербайджан",
+    img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779520521/%D0%9D%D0%90%D0%A4%D0%A2%D0%90%D0%9B%D0%90%D0%9D_eihxuc.png",
+    spec:"Нефтяные ванны · Уникальное лечение",
+    tags:["Суставы","Кожные болезни","Нервная система"],
+    desc:"Единственный в мире курорт с нафталановой нефтью. Лечит артрит, псориаз, радикулит. Советские санатории обновлены до 4★.",
+    nights:"7–14 ночей", price:"от $350 / чел.",
+    includes:["Проживание","Нафталановые ванны","Консультация врача","Питание 3 раза"],
+  },
+  {
+    key:"karlovy",
+    flag:"🇨🇿", name:"Карловы Вары", country:"Чехия",
+    img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779520521/%D0%9A%D0%90%D0%A0%D0%9B%D0%9E%D0%92%D0%AB_e4xtis.png",
+    spec:"Минеральные воды · Европейский стандарт",
+    tags:["ЖКТ","Обмен веществ","Профилактика"],
+    desc:"Старейший бальнеологический курорт Европы. 13 минеральных источников. Питьевое лечение, ванны, грязевые обёртывания.",
+    nights:"10–21 ночей", price:"от $1200 / чел.",
+    includes:["Проживание в санатории","Минеральные процедуры","Медицинская программа","Питание"],
+  },
+  {
+    key:"turkey-med",
+    flag:"🇹🇷", name:"Медицинский туризм Турция", country:"Стамбул",
+    img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779520521/%D0%A1%D0%A2%D0%90%D0%9C%D0%91%D0%A3%D0%9B_xak5js.png",
+    spec:"Клиники Стамбула · Мировой уровень",
+    tags:["Стоматология","Трансплантация волос","Эстетика","Онкология"],
+    desc:"Стамбул — медицинская столица региона. Аккредитованные клиники JCI. Стоматология в 3–5 раз дешевле Европы, волосы — в 10 раз.",
+    nights:"5–14 дней", price:"от $500 / чел.",
+    includes:["Трансфер аэропорт-клиника","Переводчик","Консультация","Гостиница"],
+  },
+  {
+    key:"israel",
+    flag:"🇮🇱", name:"Мёртвое море", country:"Израиль",
+    img:"https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&q=70",
+    spec:"Соляные ванны · Псориаз · Дерматология",
+    tags:["Псориаз","Кожные болезни","Реабилитация"],
+    desc:"Самое солёное море мира — уникальная природная лечебница. Грязи Мёртвого моря признаны самыми эффективными при псориазе.",
+    nights:"7–14 ночей", price:"от $900 / чел.",
+    includes:["Проживание у моря","Процедуры с грязями","Соляные ванны","Консультация дерматолога"],
+  },
+  {
+    key:"georgia-borjomi",
+    flag:"🇬🇪", name:"Боржоми-Харагаули", country:"Грузия",
+    img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779520520/%D0%93%D0%A0%D0%A3%D0%97%D0%98%D0%AF_srbigi.png",
+    spec:"Минеральные воды Боржоми · Эко-курорт",
+    tags:["ЖКТ","Отдых","Реабилитация"],
+    desc:"Легендарная минеральная вода Боржоми прямо у источника. Горный воздух, термальные ванны, спа-отели. Рядом с Тбилиси.",
+    nights:"5–10 ночей", price:"от $280 / чел.",
+    includes:["Проживание","Минеральные ванны","Питание","Экскурсии"],
+  },
+  {
+    key:"uzbek-charvak",
+    flag:"🇺🇿", name:"Чарвак · Узбекистан", country:"Ташкентская область",
+    img:"https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=70",
+    spec:"Горный воздух · Реабилитация · Близко",
+    tags:["Отдых","Горный воздух","Реабилитация"],
+    desc:"Санаторно-курортная зона рядом с Ташкентом. Чарвакское водохранилище, горный чистый воздух, лечебные санатории.",
+    nights:"5–10 ночей", price:"от $150 / чел.",
+    includes:["Проживание","Процедуры","Питание 3 раза","Бассейн"],
+  },
+];
+
+function SanatoriumPage({ onNav }: { onNav:(p:Page)=>void }) {
+  const [active, setActive] = useState<string|null>(null);
+  const detail = active ? SANATORIUMS.find(s => s.key === active) : null;
+
+  if (detail) return (
+    <div className="page-top">
+      <div className="san-detail-hero">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={detail.img} alt={detail.name} loading="lazy" />
+        <div className="san-detail-overlay" />
+        <div className="san-detail-content site-container">
+          <button className="back-btn" onClick={() => setActive(null)}>← Все санатории</button>
+          <h1>{detail.flag} {detail.name}</h1>
+          <p>{detail.country} · {detail.spec}</p>
+          <div className="san-tags">{detail.tags.map(t => <span key={t} className="san-tag">{t}</span>)}</div>
+        </div>
+      </div>
+      <div className="site-container" style={{ padding:"36px 20px 60px" }}>
+        <div className="san-detail-grid">
+          <div className="san-detail-main">
+            <div className="vd-card">
+              <h3>🏥 О курорте</h3>
+              <p style={{ fontSize:15, lineHeight:1.7, color:"var(--text)" }}>{detail.desc}</p>
+            </div>
+            <div className="vd-card" style={{ marginTop:16 }}>
+              <h3>✅ Что включено</h3>
+              <ul className="vd-docs">
+                {detail.includes.map((item,i) => <li key={i}>✓ {item}</li>)}
+              </ul>
+            </div>
+
+            {/* Hotels with pricing table — shown for Zheleznov odsk */}
+            {(detail as any).hotels && (
+              <div style={{ marginTop:16 }}>
+                {(detail as any).hotels.map((hotel: any, hi: number) => (
+                  <div key={hi} className="vd-card" style={{ marginBottom:16 }}>
+                    <h3>🏨 {hotel.name}</h3>
+                    <div className="san-rooms-table">
+                      <div className="san-rooms-header">
+                        <span>Номер</span>
+                        <span>Дата заезда</span>
+                        <span>Стоимость</span>
+                      </div>
+                      {hotel.rooms.map((room: any, ri: number) => (
+                        <div key={ri} className="san-rooms-row">
+                          <span>{room.type}</span>
+                          <span className="san-room-dates">{room.dates}</span>
+                          <span className="san-room-price">{room.price}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <p style={{ marginTop:12, fontSize:12, color:"var(--text2)", lineHeight:1.55 }}>
+                      <strong>В стоимость входит:</strong> {hotel.includes}
+                    </p>
+                  </div>
+                ))}
+                {(detail as any).transfer && (
+                  <div className="san-transfer-box">
+                    🚗 {(detail as any).transfer}
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+          <div className="san-detail-side">
+            <div className="san-booking-card">
+              <div className="san-booking-price">
+                <PriceBlock price={detail.price} />
+              </div>
+              <div className="san-booking-meta">
+                <span>🌙 {detail.nights}</span>
+              </div>
+              <button className="btn-primary" style={{ width:"100%", padding:13, fontSize:14 }} onClick={() => onNav("contacts")}>
+                Забронировать
+              </button>
+              <a className="btn-outline" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer"
+                style={{ display:"block", textAlign:"center", marginTop:10, padding:"11px", fontSize:13 }}>
+                <img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" className="soc-icon" />Написать в Telegram
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="cta-banner" style={{ marginTop:32 }}>
+          <h3>💬 Нужна консультация?</h3>
+          <p>Подберём программу лечения, поможем с документами и трансфером</p>
+          <div className="cta-btns">
+            <button className="btn-primary" onClick={() => onNav("contacts")}>Получить консультацию</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="page-top">
+      <div className="san-hero">
+        <div className="site-container">
+          <span className="section-tag">Санаторно-курортное лечение</span>
+          <h1>🏥 Санатории и медицинский туризм</h1>
+          <p>Лечение, реабилитация, профилактика — подберём курорт под ваш диагноз и бюджет</p>
+        </div>
+      </div>
+      <div className="site-container" style={{ padding:"36px 20px 60px" }}>
+        <div className="san-grid">
+          {SANATORIUMS.map(s => (
+            <div key={s.key} className="san-card" onClick={() => setActive(s.key)}>
+              <div className="san-card-img">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={s.img} alt={s.name} loading="lazy" />
+                <div className="san-card-overlay" />
+                <div className="san-card-country">{s.flag} {s.country}</div>
+              </div>
+              <div className="san-card-body">
+                <h3>{s.name}</h3>
+                <p className="san-card-spec">{s.spec}</p>
+                <div className="san-tags">{s.tags.slice(0,2).map(t => <span key={t} className="san-tag">{t}</span>)}</div>
+                <div className="san-card-footer">
+                  <PriceBlock price={s.price} />
+                  <span className="san-card-nights">{s.nights}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="cta-banner" style={{ marginTop:40 }}>
+          <h3>🏥 Нужна помощь с выбором?</h3>
+          <p>Расскажите о диагнозе — подберём оптимальный курорт и программу лечения</p>
+          <div className="cta-btns">
+            <button className="btn-primary" onClick={() => onNav("contacts")}>Получить консультацию</button>
+            <a className="btn-outline" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer">
+              <img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" className="soc-icon" />Telegram
+            </a>
           </div>
         </div>
       </div>
