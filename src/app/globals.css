@@ -547,6 +547,14 @@ footer { background: var(--dark); color: rgba(255,255,255,0.62); padding: 44px 2
 }
 
 @media (min-width: 881px) {
+  /* Footer fonts +5% */
+  footer { font-size: 13.65px; }
+  .f-logo span { font-size: 15.75px; }
+  .f-brand p { font-size: 13.65px; }
+  .f-col h4 { font-size: 13.65px; }
+  .f-col ul li a, .f-col ul li button { font-size: 13.65px; }
+  .f-bottom { font-size: 12.6px; }
+
   /* Dest tree fonts +2% */
   .dti-name { font-size: 14.28px; }
   .dti-sub { font-size: 12.24px; }

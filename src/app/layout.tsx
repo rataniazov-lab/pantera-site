@@ -55,7 +55,7 @@ const schemaOrg = {
   url: SITE_URL,
   logo: LOGO_URL,
   telephone: "+998771618888",
-  email: "uz@panteraluxe.travel",
+  email: "uz@exploremore.travel",
   address: {
     "@type": "PostalAddress",
     streetAddress: "проспект Амир Темур 99а",

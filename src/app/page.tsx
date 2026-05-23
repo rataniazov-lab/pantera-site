@@ -545,7 +545,7 @@ function ContactsPage() {
   const [sent, setSent] = useState(false);
   const contactItems: [string,string,string,string|undefined,string][] = [
     ["📞","rgba(255,107,53,0.1)","Телефон","tel:+998771618888","+998 77 161 88 88"],
-    ["✉️","rgba(33,150,243,0.1)","Email","mailto:uz@panteraluxe.travel","uz@panteraluxe.travel"],
+    ["✉️","rgba(33,150,243,0.1)","Email","mailto:uz@exploremore.travel","uz@exploremore.travel"],
     ["📍","rgba(6,182,212,0.1)","Офис",undefined,"Ташкент, Амир Темур 99а"],
     ["⏰","rgba(34,197,94,0.1)","Режим работы",undefined,"10:00 – 21:00, ежедневно"],
   ];
