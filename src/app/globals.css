@@ -424,23 +424,30 @@ footer { background: var(--dark); color: rgba(255,255,255,0.62); padding: 44px 2
 }
 
 @media (min-width: 881px) {
-  .nav {
-    height: 80px;
-    padding: 0 40px;
-  }
-  .nav-logo img { height: 48px; }
-  .nav-logo-text .name { font-size: 17px; }
-  .nav-logo-text .sub { font-size: 11px; }
-  .nav-link { font-size: 15px; padding: 8px 14px; }
-  .nav-cta { font-size: 15px; padding: 10px 22px; }
+  /* Nav +2% */
+  .nav { height: 82px; padding: 0 40px; }
+  .nav-logo img { height: 49px; }
+  .nav-logo-text .name { font-size: 17.3px; }
+  .nav-logo-text .sub { font-size: 11.2px; }
+  .nav-link { font-size: 15.3px; padding: 8px 14px; }
+  .nav-cta { font-size: 15.3px; padding: 10px 22px; }
+  .page-top { padding-top: 82px; }
 
-  .hot-strip { padding: 18px 40px; gap: 22px; }
-  .hot-badge { font-size: 13px; padding: 4px 14px; }
-  .hot-text { font-size: 16px; }
-  .cd-box { min-width: 54px; padding: 7px 12px; border-radius: 8px; }
-  .cd-box strong { font-size: 22px; }
-  .cd-box span { font-size: 11px; }
-  .cd-sep { font-size: 22px; }
+  /* Hero +10% */
+  .hero { min-height: calc(110vh - 82px); }
+  .hero h1 { font-size: clamp(2rem, 5.5vw, 3.74rem); }
+  .hero-sub { font-size: clamp(14.3px, 2.2vw, 17.6px); }
+  .hero-stat strong { font-size: 24px; }
+  .hero-content { padding: 44px 20px; }
+
+  /* Ticker Bar +2%, РїРѕРґРЅСЏС‚ РЅР° 10% РІС‹С€Рµ */
+  .hot-strip { padding: 18.4px 40px; gap: 22px; transform: translateY(-10%); }
+  .hot-badge { font-size: 13.3px; padding: 4px 14px; }
+  .hot-text { font-size: 16.3px; }
+  .cd-box { min-width: 55px; padding: 7.1px 12px; border-radius: 8px; }
+  .cd-box strong { font-size: 22.4px; }
+  .cd-box span { font-size: 11.2px; }
+  .cd-sep { font-size: 22.4px; }
 }
 @media (max-width: 580px) {
   .footer-grid { grid-template-columns: 1fr; }
