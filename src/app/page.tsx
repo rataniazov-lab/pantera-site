@@ -93,36 +93,74 @@ function PriceBlock({ price, dark = false }: { price: string; dark?: boolean }) 
 }
 
 // ─────────────────────────── Nav ────────────────────────────────
+const UZ_CITIES = [
+  { name:"Tashkent",   emoji:"🏙️" },
+  { name:"Samarkand",  emoji:"🕌" },
+  { name:"Bukhara",    emoji:"🏛️" },
+  { name:"Khiva",      emoji:"🏰" },
+  { name:"Muynak",     emoji:"🌊" },
+];
+
 function Nav({ page, onNav, mob, onMob }: {
   page: Page; onNav: (p: Page) => void; mob: boolean; onMob: () => void;
 }) {
+  const [lang, setLang] = useState<"RU"|"UZ"|"EN">("RU");
+  const [uzOpen, setUzOpen] = useState(false);
   const links: [Page, string][] = [
-    ["home","Главная"], ["directions","Направления"], ["cruise","🚢 Круизы"], ["videos","🎬 Видео"],
+    ["home","Главная"], ["directions","Направления"], ["cruise","Круизы"], ["videos","Видео"],
   ];
   return (
     <>
-      <nav className="nav">
-        <button className="nav-logo" onClick={() => onNav("home")}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={LOGO} alt="PANTERA LUXE" width={38} height={38} />
-          <div className="nav-logo-text">
-            <span className="name">PANTERA LUXE</span>
-            <span className="sub">Туры из Ташкента</span>
-          </div>
-        </button>
+      <nav className="nav nav-two-row">
 
-        <div className="nav-links">
-          {links.map(([p, l]) => (
-            <button key={p} className={`nav-link${page === p ? " active" : ""}`} onClick={() => onNav(p)}>{l}</button>
-          ))}
-          <button className="nav-cta" onClick={() => onNav("contacts")}>Оставить заявку</button>
+        {/* ── Top row: logo + lang + cta ── */}
+        <div className="nav-top">
+          <button className="nav-logo" onClick={() => onNav("home")}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={LOGO} alt="PANTERA LUXE" width={38} height={38} />
+            <div className="nav-logo-text">
+              <span className="name">PANTERA LUXE</span>
+              <span className="sub">Туры из Ташкента</span>
+            </div>
+          </button>
+          <div style={{ display:"flex", alignItems:"center", gap:8 }}>
+            <div className="lang-switcher">
+              {(["RU","UZ","EN"] as const).map(l => (
+                <button key={l} className={`lang-btn${lang === l ? " active" : ""}`} onClick={() => setLang(l)}>{l}</button>
+              ))}
+            </div>
+            <button className="nav-cta" onClick={() => onNav("contacts")}>Оставить заявку</button>
+          </div>
         </div>
 
-        <button className="hamburger" onClick={onMob}>
-          <span style={mob ? { transform:"rotate(45deg) translate(5px,5px)" } : {}} />
-          <span style={mob ? { opacity:0 } : {}} />
-          <span style={mob ? { transform:"rotate(-45deg) translate(5px,-5px)" } : {}} />
-        </button>
+        {/* ── Bottom row: links + uzbekistan dropdown ── */}
+        <div className="nav-bottom">
+          <div className="nav-links">
+            {links.map(([p, l]) => (
+              <button key={p} className={`nav-link${page === p ? " active" : ""}`} onClick={() => onNav(p)}>{l}</button>
+            ))}
+          </div>
+          <div className="nav-divider" />
+          <div className="uz-dropdown-wrap" onMouseEnter={() => setUzOpen(true)} onMouseLeave={() => setUzOpen(false)}>
+            <button className={`uz-btn${uzOpen ? " open" : ""}`}>
+              🇺🇿 Uzbekistan Tours <span className="uz-arrow">▾</span>
+            </button>
+            {uzOpen && (
+              <div className="uz-menu">
+                <div className="uz-menu-label">Ancient Silk Road Cities</div>
+                {UZ_CITIES.map(c => (
+                  <button key={c.name} className="uz-item" onClick={() => onNav("contacts")}>
+                    {c.emoji} {c.name}
+                  </button>
+                ))}
+                <div className="uz-menu-footer">
+                  <button className="uz-all" onClick={() => onNav("directions")}>View all Uzbekistan tours →</button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
       </nav>
 
       <div className={`mob-menu${mob ? " open" : ""}`}>
@@ -130,7 +168,22 @@ function Nav({ page, onNav, mob, onMob }: {
         {([...links, ["contacts","Контакты"]] as [Page,string][]).map(([p,l]) => (
           <button key={p} className="mob-link" onClick={() => { onNav(p); onMob(); }}>{l}</button>
         ))}
+        <div className="mob-divider" />
+        <p className="mob-uz-label">🇺🇿 Uzbekistan Tours</p>
+        {UZ_CITIES.map(c => (
+          <button key={c.name} className="mob-link" style={{ fontSize:18, color:"rgba(255,210,120,0.9)" }}
+            onClick={() => { onNav("contacts"); onMob(); }}>
+            {c.emoji} {c.name}
+          </button>
+        ))}
       </div>
+
+      {/* hamburger */}
+      <button className="hamburger" style={{ position:"fixed", top:10, right:16, zIndex:101 }} onClick={onMob}>
+        <span style={mob ? { transform:"rotate(45deg) translate(5px,5px)" } : {}} />
+        <span style={mob ? { opacity:0 } : {}} />
+        <span style={mob ? { transform:"rotate(-45deg) translate(5px,-5px)" } : {}} />
+      </button>
     </>
   );
 }
