@@ -158,11 +158,11 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
         <span className="hot-badge">🔥 ГОРИТ</span>
         <p className="hot-text">Дубай 7 ночей — <span>от $499</span> · Вылет из Ташкента</p>
         <div className="cd">
-          <div className="cd-box"><strong>{cd.h}</strong><span>ч</span></div>
+          <div className="cd-box"><span className="cd-num">{cd.h}</span><span className="cd-lbl">ч</span></div>
           <span className="cd-sep">:</span>
-          <div className="cd-box"><strong>{cd.m}</strong><span>м</span></div>
+          <div className="cd-box"><span className="cd-num">{cd.m}</span><span className="cd-lbl">м</span></div>
           <span className="cd-sep">:</span>
-          <div className="cd-box"><strong>{cd.s}</strong><span>с</span></div>
+          <div className="cd-box"><span className="cd-num">{cd.s}</span><span className="cd-lbl">с</span></div>
         </div>
         <button className="btn-primary" style={{ padding:"7px 16px", fontSize:12 }} onClick={() => onNav("contacts")}>
           Успеть →
@@ -248,7 +248,6 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
                 </div>
                 <div className="cruise-dest-body">
                   <h3>{c.title}</h3>
-                  <p>{c.sub}</p>
                   <div className="cruise-dest-footer">
                     <PriceBlock price={c.price} />
                     <span className="cruise-dest-btn">Подробнее →</span>
@@ -450,7 +449,7 @@ function DestPage({ destKey, onBack, onNav }: { destKey:string; onBack:()=>void;
           <p>Оставьте заявку — подберём лучший тур и отель</p>
           <div className="cta-btns">
             <button className="btn-primary" onClick={() => onNav("contacts")}>Оставить заявку</button>
-            <a className="btn-outline" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer">💬 Telegram</a>
+            <a className="btn-outline" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer"><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" className="soc-icon" />Telegram</a>
           </div>
         </div>
       </div>
@@ -523,7 +522,7 @@ function CruisePage({ onNav }: { onNav:(p:Page)=>void }) {
           <p>Более 300 клиентов из Ташкента уже плавали с нами.</p>
           <div className="cta-btns">
             <button className="btn-primary" onClick={() => onNav("contacts")}>Забронировать круиз</button>
-            <a className="btn-outline" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer">💬 Telegram</a>
+            <a className="btn-outline" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer"><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" className="soc-icon" />Telegram</a>
           </div>
         </div>
       </div>
@@ -608,8 +607,8 @@ function VideosPage() {
               Мы готовим видеообзоры наших направлений. Подпишитесь чтобы не пропустить!
             </p>
             <div style={{ display:"flex", gap:10, justifyContent:"center", flexWrap:"wrap" }}>
-              <a className="soc-btn" href="https://www.instagram.com/tury_tashkent/" target="_blank" rel="noopener noreferrer" style={{ background:"#e1306c" }}>📸 Instagram</a>
-              <a className="soc-btn" href="https://t.me/tury_iz_tashkenta" target="_blank" rel="noopener noreferrer" style={{ background:"#2ca5e0" }}>✈️ Telegram</a>
+              <a className="soc-btn soc-btn-ig" href="https://www.instagram.com/tury_tashkent/" target="_blank" rel="noopener noreferrer" style={{ background:"#e1306c" }}><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538594/Instagram_qdbqub.png" alt="Instagram" className="soc-icon" />Instagram</a>
+              <a className="soc-btn" href="https://t.me/tury_iz_tashkenta" target="_blank" rel="noopener noreferrer" style={{ background:"#2ca5e0" }}><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" className="soc-icon" />Telegram</a>
             </div>
           </div>
         ) : (
@@ -720,8 +719,8 @@ function ContactsPage() {
             ))}
             <div className="soc-links">
               <a className="soc-btn" href="https://www.instagram.com/tury_tashkent/"  target="_blank" rel="noopener noreferrer" style={{ background:"#e1306c" }}>📸 Instagram</a>
-              <a className="soc-btn" href="https://t.me/tury_iz_tashkenta"            target="_blank" rel="noopener noreferrer" style={{ background:"#2ca5e0" }}>✈️ Горящие туры</a>
-              <a className="soc-btn" href="https://t.me/vilet_support"                target="_blank" rel="noopener noreferrer" style={{ background:"#2ca5e0" }}>💬 Написать</a>
+              <a className="soc-btn" href="https://t.me/tury_iz_tashkenta"            target="_blank" rel="noopener noreferrer" style={{ background:"#2ca5e0" }}><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" className="soc-icon" />Горящие туры</a>
+              <a className="soc-btn" href="https://t.me/vilet_support"                target="_blank" rel="noopener noreferrer" style={{ background:"#2ca5e0" }}><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" className="soc-icon" />Написать</a>
             </div>
           </div>
 
@@ -731,7 +730,7 @@ function ContactsPage() {
                 <div style={{ fontSize:48, marginBottom:10 }}>✅</div>
                 <h3 style={{ fontSize:18, fontWeight:700, marginBottom:6 }}>Заявка отправлена!</h3>
                 <p style={{ color:"#64748b", fontSize:13, marginBottom:16 }}>Менеджер свяжется в течение 15 минут.</p>
-                <a className="btn-primary" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer">💬 Написать в Telegram</a>
+                <a className="btn-primary" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer"><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" className="soc-icon" />Написать в Telegram</a>
               </div>
             ) : (
               <>
@@ -777,8 +776,8 @@ function Footer({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>vo
             <h4>Контакты</h4>
             <ul>
               <li><a href="tel:+998771618888">+998 77 161 88 88</a></li>
-              <li><a href="https://t.me/vilet_support"                target="_blank" rel="noopener noreferrer">Telegram</a></li>
-              <li><a href="https://www.instagram.com/tury_tashkent/"  target="_blank" rel="noopener noreferrer">Instagram</a></li>
+              <li><a href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer" className="footer-ig-link"><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" className="footer-soc-icon" />Telegram</a></li>
+              <li><a href="https://www.instagram.com/tury_tashkent/" target="_blank" rel="noopener noreferrer" className="footer-ig-link"><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538594/Instagram_qdbqub.png" alt="Instagram" className="footer-soc-icon" />Instagram</a></li>
               <li><a href="https://t.me/tury_iz_tashkenta"            target="_blank" rel="noopener noreferrer">Горящие туры</a></li>
             </ul>
           </div>
@@ -831,12 +830,12 @@ export default function Home() {
       {/* Floating buttons */}
       <div className="float-w">
         {([
-          ["https://t.me/vilet_support",                              "#2ca5e0",                                          "✈️","Telegram"  ],
+          ["https://t.me/vilet_support",                              "#2ca5e0",                                          "TG","Telegram"  ],
           ["https://wa.me/998771618888",                              "#25d366",                                          "💬","WhatsApp"  ],
-          ["https://www.instagram.com/tury_tashkent/",               "linear-gradient(135deg,#f09433,#dc2743,#bc1888)",  "📸","Instagram" ],
+          ["https://www.instagram.com/tury_tashkent/",               "linear-gradient(135deg,#f09433,#dc2743,#bc1888)",  "IG","Instagram" ],
         ] as [string,string,string,string][]).map(([href,bg,ico,lbl]) => (
           <a key={lbl} className="f-btn" href={href} target="_blank" rel="noopener noreferrer" style={{ background:bg }}>
-            <span className="f-ico">{ico}</span>
+            <span className="f-ico">{ico === "IG" ? <img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538594/Instagram_qdbqub.png" alt="Instagram" style={{width:20,height:20,objectFit:"contain"}} /> : ico === "TG" ? <img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" style={{width:20,height:20,objectFit:"contain"}} /> : ico}</span>
             <span className="f-lbl">{lbl}</span>
           </a>
         ))}

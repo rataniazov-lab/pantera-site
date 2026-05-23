@@ -40,16 +40,17 @@ a { color: inherit; text-decoration: none; }
    PREMIUM PRICE SYSTEM вЂ” marker highlight
    в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђ */
 
-/* Old crossed-out price */
+/* Old crossed-out price вЂ” large, readable, elegant */
 .price-old {
   display: block;
-  font-size: 13px;
-  font-weight: 600;
-  color: #94a3b8;
+  font-size: 15px;
+  font-weight: 700;
+  color: #8a9ab0;
   text-decoration: line-through;
-  text-decoration-color: #94a3b8;
-  letter-spacing: 0.2px;
-  margin-bottom: 3px;
+  text-decoration-color: #8a9ab0;
+  text-decoration-thickness: 1.5px;
+  letter-spacing: 0.1px;
+  margin-bottom: 4px;
   line-height: 1;
 }
 
@@ -57,35 +58,35 @@ a { color: inherit; text-decoration: none; }
 .price-new {
   display: inline-block;
   position: relative;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 900;
-  color: #d95e1a;
-  line-height: 1.1;
-  padding: 2px 6px 3px 4px;
+  color: #c8501a;
+  line-height: 1.15;
+  padding: 2px 8px 4px 5px;
   z-index: 0;
 }
 .price-new::before {
   content: '';
   position: absolute;
-  inset: 0 -3px;
+  inset: -1px -4px 0px -3px;
   background: linear-gradient(104deg,
-    rgba(255,200,120,0) 0%,
-    rgba(255,195,100,0.55) 10%,
-    rgba(255,210,130,0.70) 35%,
-    rgba(255,205,115,0.68) 65%,
-    rgba(255,195,100,0.55) 88%,
-    rgba(255,200,120,0) 100%
+    rgba(255,210,140,0) 0%,
+    rgba(255,205,115,0.60) 8%,
+    rgba(255,215,135,0.75) 30%,
+    rgba(255,218,140,0.78) 55%,
+    rgba(255,208,120,0.65) 82%,
+    rgba(255,210,140,0) 100%
   );
-  border-radius: 3px 6px 4px 5px / 5px 4px 6px 3px;
-  transform: skewX(-2deg) scaleY(1.05);
+  border-radius: 4px 7px 5px 6px / 6px 5px 7px 4px;
+  transform: skewX(-1.5deg) scaleY(1.08);
   z-index: -1;
 }
 
-/* Wrapper for price block */
+/* Wrapper for price block вЂ” only old + new, nothing else */
 .price-block {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 2px;
 }
 
 /* в”Ђв”Ђ Cruise card price upgrade в”Ђв”Ђ */
@@ -93,36 +94,42 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .cruise-dest-price-block { display: flex; flex-direction: column; gap: 2px; }
-.cruise-dest-price { display: none; } /* replaced by .price-new */
+.cruise-dest-price { display: none; }
+/* Hide location subtitle on cruise cards вЂ” price block only */
+.cruise-dest-body > p { display: none; }
 
 /* в”Ђв”Ђ Destination tree price в”Ђв”Ђ */
-.dti-price-block { display: flex; flex-direction: column; align-items: flex-end; gap: 1px; }
-.dti-sub { display: none; } /* replaced by price-new in tree */
+.dti-price-block { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.dti-sub { display: none; }
 
 /* в”Ђв”Ђ Cruise type card price в”Ђв”Ђ */
-.ct-price { display: none; } /* replaced */
+.ct-price { display: none; }
 
 /* в”Ђв”Ђ Dir card (directions page) в”Ђв”Ђ */
 .dir-price-block {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
+  bottom: 14px;
+  right: 14px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 1px;
+  gap: 2px;
 }
-.dir-price-block .price-old { color: rgba(255,255,255,0.55); text-decoration-color: rgba(255,255,255,0.45); font-size: 11px; }
-.dir-price-block .price-new { font-size: 15px; color: #fff; }
+.dir-price-block .price-old {
+  color: rgba(255,255,255,0.65);
+  text-decoration-color: rgba(255,255,255,0.50);
+  font-size: 13px;
+}
+.dir-price-block .price-new { font-size: 16px; color: #fff; }
 .dir-price-block .price-new::before {
   background: linear-gradient(104deg,
     rgba(255,140,60,0) 0%,
-    rgba(255,130,50,0.55) 12%,
-    rgba(255,120,40,0.65) 40%,
-    rgba(255,130,50,0.60) 70%,
+    rgba(255,120,40,0.50) 12%,
+    rgba(255,110,30,0.62) 40%,
+    rgba(255,120,40,0.55) 70%,
     rgba(255,140,60,0) 100%
   );
 }
@@ -267,14 +274,40 @@ a { color: inherit; text-decoration: none; }
 }
 .hot-text { color: #fff; font-size: 13px; font-weight: 600; }
 .hot-text span { color: var(--accent2); }
-.cd { display: flex; align-items: center; gap: 5px; }
+.cd { display: flex; align-items: center; gap: 8px; }
 .cd-box {
-  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
-  border-radius: 6px; padding: 4px 9px; text-align: center; min-width: 42px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 9px;
+  padding: 7px 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  min-width: 58px;
+  justify-content: center;
 }
-.cd-box strong { display: block; color: #fff; font-size: 16px; font-weight: 900; line-height: 1; }
-.cd-box span { color: rgba(255,255,255,0.5); font-size: 9px; text-transform: uppercase; letter-spacing: 1px; }
-.cd-sep { color: rgba(255,255,255,0.35); font-size: 16px; }
+.cd-num {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+.cd-lbl {
+  color: rgba(255,255,255,0.45);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 1px;
+  text-transform: lowercase;
+}
+.cd-sep {
+  color: rgba(255,255,255,0.30);
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0 1px;
+  line-height: 1;
+}
 
 /* в”Ђв”Ђ Sections в”Ђв”Ђ */
 .sec { padding: 60px 0; }
@@ -607,6 +640,12 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 900px) { .videos-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 540px) { .videos-grid { grid-template-columns: 1fr; } .admin-row { flex-direction: column; } }
 
+
+/* в”Ђв”Ђ Instagram custom icon в”Ђв”Ђ */
+.soc-icon { width: 18px; height: 18px; object-fit: contain; display: inline-block; vertical-align: middle; margin-right: 6px; }
+.footer-soc-icon { width: 15px; height: 15px; object-fit: contain; display: inline-block; vertical-align: middle; margin-right: 5px; filter: brightness(0) invert(1); opacity: 0.6; }
+.footer-ig-link:hover .footer-soc-icon { opacity: 1; }
+
 /* в”Ђв”Ђ Contacts в”Ђв”Ђ */
 .contacts-hero { background: linear-gradient(135deg,var(--dark),var(--dark2)); padding: 48px 0; text-align: center; }
 .contacts-hero h1 { color: #fff; font-size: clamp(1.6rem,4vw,2.4rem); font-weight: 900; margin-bottom: 7px; }
@@ -712,10 +751,10 @@ footer { background: var(--dark); color: rgba(255,255,255,0.62); padding: 44px 2
   .hot-strip { padding: 18.4px 40px; gap: 22px; transform: translateY(-10%); }
   .hot-badge { font-size: 13.97px; padding: 4px 14px; }
   .hot-text { font-size: 17.1px; }
-  .cd-box { min-width: 55px; padding: 7.1px 12px; border-radius: 8px; }
-  .cd-box strong { font-size: 23.5px; }
-  .cd-box span { font-size: 11.76px; }
-  .cd-sep { font-size: 23.5px; }
+  .cd-box { min-width: 66px; padding: 9px 18px; border-radius: 10px; gap: 3px; }
+  .cd-num { font-size: 26px; }
+  .cd-lbl { font-size: 12px; }
+  .cd-sep { font-size: 24px; }
 }
 @media (max-width: 580px) {
   .footer-grid { grid-template-columns: 1fr; }
@@ -809,8 +848,10 @@ button {
 
 /* в”Ђв”Ђ Price system desktop scale в”Ђв”Ђ */
 @media (min-width: 881px) {
-  .price-new { font-size: 20px; padding: 2px 8px 3px 5px; }
-  .price-old { font-size: 14px; }
+  .price-new { font-size: 22px; padding: 3px 9px 4px 6px; }
+  .price-old { font-size: 16px; }
+  .dir-price-block .price-old { font-size: 14px; }
+  .dir-price-block .price-new { font-size: 18px; }
   .dti-price-block { display: flex; }
   .dir-price-block .price-new { font-size: 16px; }
 }
