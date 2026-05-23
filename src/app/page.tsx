@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
 
-type Page = "home" | "directions" | "dest" | "cruise" | "videos" | "contacts";
+type Page = "home" | "directions" | "dest" | "cruise" | "videos" | "contacts" | "visa" | "visadest";
 
 const LOGO = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779385406/pantera_luxe_logo_v0gbmo.png";
 
@@ -104,7 +104,7 @@ const UZ_CITIES = [
 function Nav({ page, onNav, mob, onMob }: {
   page: Page; onNav: (p: Page) => void; mob: boolean; onMob: () => void;
 }) {
-  const [lang, setLang] = useState<"RU"|"UZ"|"EN">("RU");
+  const [lang, setLang] = useState<"RU"|"UZ"|"EN"|"ZH">("RU");
   const [uzOpen, setUzOpen] = useState(false);
   const links: [Page, string][] = [
     ["home","Главная"], ["directions","Направления"], ["cruise","Круизы"], ["videos","Видео"],
@@ -125,7 +125,7 @@ function Nav({ page, onNav, mob, onMob }: {
           </button>
           <div style={{ display:"flex", alignItems:"center", gap:8 }}>
             <div className="lang-switcher">
-              {(["RU","UZ","EN"] as const).map(l => (
+              {(["RU","UZ","EN","ZH"] as const).map(l => (
                 <button key={l} className={`lang-btn${lang === l ? " active" : ""}`} onClick={() => setLang(l)}>{l}</button>
               ))}
             </div>
@@ -145,6 +145,8 @@ function Nav({ page, onNav, mob, onMob }: {
               <button key={p} className={`nav-link${page === p ? " active" : ""}`} onClick={() => onNav(p)}>{l}</button>
             ))}
           </div>
+          <div className="nav-divider" />
+          <button className="nav-link visa-btn" onClick={() => onNav("visa")}>🛂 Визовая поддержка</button>
           <div className="nav-divider" />
           <div className="uz-dropdown-wrap" onMouseEnter={() => setUzOpen(true)} onMouseLeave={() => setUzOpen(false)}>
             <button className={`uz-btn${uzOpen ? " open" : ""}`}>
@@ -885,6 +887,8 @@ export default function Home() {
         {page === "cruise"     && <CruisePage     onNav={nav} />}
         {page === "videos"     && <VideosPage />}
         {page === "contacts"   && <ContactsPage />}
+        {page === "visa"       && <VisaPage       onNav={nav} onVisaDest={(k) => { setDestKey(k); nav("visadest"); }} />}
+        {page === "visadest"  && <VisaDestPage    destKey={destKey} onBack={() => nav("visa")} onNav={nav} />}
       </main>
 
       <Footer onNav={nav} onDest={openDest} />
@@ -907,5 +911,234 @@ export default function Home() {
         <button className="scroll-top" onClick={() => window.scrollTo({ top:0, behavior:"smooth" })}>↑</button>
       )}
     </>
+  );
+}
+
+// ─────────────────────────── Visa Data ──────────────────────────
+const VISA_FROM_UZ = [
+  { region:"🌍 СНГ и ближнее зарубежье", color:"#22c55e", items:[
+    { flag:"🇷🇺", name:"Россия",       days:"без ограничений", note:"Без визы" },
+    { flag:"🇹🇷", name:"Турция",       days:"до 30 дней",      note:"Без визы" },
+    { flag:"🇬🇪", name:"Грузия",       days:"до 365 дней",     note:"Без визы" },
+    { flag:"🇦🇿", name:"Азербайджан",  days:"до 30 дней",      note:"Без визы" },
+    { flag:"🇰🇿", name:"Казахстан",    days:"до 30 дней",      note:"Без визы" },
+    { flag:"🇰🇬", name:"Кыргызстан",   days:"до 30 дней",      note:"Без визы" },
+    { flag:"🇧🇾", name:"Беларусь",     days:"до 30 дней",      note:"Без визы" },
+  ]},
+  { region:"🌏 Азия", color:"#06b6d4", items:[
+    { flag:"🇨🇳", name:"Китай",        days:"до 30 дней",      note:"Без визы (с 2025)" },
+    { flag:"🇹🇭", name:"Таиланд",      days:"до 30 дней",      note:"Без визы" },
+    { flag:"🇮🇩", name:"Индонезия",    days:"до 30 дней",      note:"Без визы" },
+    { flag:"🇰🇭", name:"Камбоджа",     days:"до 30 дней",      note:"Без визы" },
+    { flag:"🇲🇻", name:"Мальдивы",     days:"до 30 дней",      note:"Виза по прилёту" },
+    { flag:"🇳🇵", name:"Непал",        days:"до 30 дней",      note:"Виза по прилёту" },
+    { flag:"🇯🇴", name:"Иордания",     days:"до 30 дней",      note:"Без визы" },
+    { flag:"🇱🇧", name:"Ливан",        days:"до 30 дней",      note:"Без визы" },
+    { flag:"🇲🇾", name:"Малайзия",     days:"до 30 дней",      note:"Виза по прилёту" },
+    { flag:"🇻🇳", name:"Вьетнам",      days:"до 45 дней",      note:"eVisa онлайн" },
+  ]},
+  { region:"🇦🇪 Ближний Восток", color:"#f59e0b", items:[
+    { flag:"🇦🇪", name:"ОАЭ",          days:"до 30 дней",      note:"Без визы (с 2024)" },
+    { flag:"🇶🇦", name:"Катар",        days:"до 30 дней",      note:"Без визы" },
+    { flag:"🇸🇦", name:"Саудовская Аравия", days:"до 30 дней", note:"Без визы" },
+    { flag:"🇴🇲", name:"Оман",         days:"до 30 дней",      note:"Без визы" },
+  ]},
+  { region:"🌐 eVisa / Виза онлайн", color:"#8b5cf6", items:[
+    { flag:"🇮🇳", name:"Индия",        days:"до 60 дней",      note:"eVisa онлайн" },
+    { flag:"🇪🇬", name:"Египет",       days:"до 30 дней",      note:"Виза по прилёту / eVisa" },
+    { flag:"🇪🇹", name:"Эфиопия",      days:"до 30 дней",      note:"eVisa онлайн" },
+    { flag:"🇷🇼", name:"Руанда",       days:"до 30 дней",      note:"Без визы" },
+  ]},
+];
+
+const VISA_TO_UZ = [
+  { region:"🌍 Европа", color:"#3b82f6", items:[
+    "Германия","Франция","Италия","Испания","Нидерланды",
+    "Австрия","Швейцария","Польша","Чехия","Венгрия","Румыния",
+    "Швеция","Норвегия","Финляндия","Дания","Бельгия","Португалия",
+  ]},
+  { region:"🌏 Азия", color:"#06b6d4", items:[
+    "Япония","Южная Корея","Китай","Индия","Израиль",
+    "Сингапур","Малайзия","Индонезия","Таиланд","Вьетнам",
+  ]},
+  { region:"🇦🇲 СНГ", color:"#22c55e", items:[
+    "Россия","Казахстан","Кыргызстан","Таджикистан","Армения",
+    "Азербайджан","Беларусь","Украина","Молдова","Грузия",
+  ]},
+  { region:"🇺🇸 Америка", color:"#f59e0b", items:[
+    "США","Канада","Мексика","Бразилия","Аргентина",
+  ]},
+  { region:"🇦🇪 Ближний Восток", color:"#f97316", items:[
+    "ОАЭ","Саудовская Аравия","Катар","Кувейт","Бахрейн","Оман","Иордания",
+  ]},
+];
+
+const VISA_DEST_GUIDES: Record<string, {
+  flag:string; name:string; type:string; days:string; color:string;
+  steps:string[]; docs:string[]; tips:string[]; price:string;
+}> = {
+  "ОАЭ":     { flag:"🇦🇪", name:"ОАЭ (Дубай)", type:"Без визы", days:"до 30 дней", color:"#06b6d4", price:"бесплатно", steps:["Купить авиабилет","Забронировать отель","Лететь — виза не нужна","На паспортном контроле получить штамп 30 дней"], docs:["Загранпаспорт (срок действия 6+ мес.)","Обратный билет","Бронь отеля","$100+ на счету"], tips:["Нельзя пить алкоголь публично","Рамадан — ограничения в дневное время","Дресс-код в торговых центрах"] },
+  "Турция":  { flag:"🇹🇷", name:"Турция", type:"Без визы", days:"до 30 дней", color:"#ef4444", price:"бесплатно", steps:["Купить авиабилет","Забронировать отель","Лететь — виза не нужна","На паспортном контроле штамп 30 дней"], docs:["Загранпаспорт","Обратный билет","Бронь отеля"], tips:["Можно продлить до 60 дней","Медстраховка рекомендуется","Обменный курс лучше в банках Турции"] },
+  "Таиланд": { flag:"🇹🇭", name:"Таиланд", type:"Без визы", days:"до 30 дней", color:"#8b5cf6", price:"бесплатно", steps:["Купить авиабилет","Заполнить TM30 онлайн (необязательно)","Лететь — виза не нужна","Штамп на 30 дней"], docs:["Загранпаспорт (6+ мес.)","Обратный билет","$50+ наличными или на карте"], tips:["В храмы — закрытая одежда","Виза-ран для продления","Лучший сезон ноябрь-март"] },
+  "Китай":   { flag:"🇨🇳", name:"Китай", type:"Без визы (с 2025)", days:"до 30 дней", color:"#ef4444", price:"бесплатно", steps:["Купить авиабилет","Забронировать отель","Лететь — с 2025 виза не нужна 30 дней","Заполнить таможенную декларацию"], docs:["Загранпаспорт","Обратный билет","Подтверждение проживания"], tips:["VPN нужен для Google/Instagram","WeChat Pay обязателен для оплат","Рекомендуется международная SIM"] },
+  "Вьетнам": { flag:"🇻🇳", name:"Вьетнам", type:"eVisa онлайн", days:"до 45 дней", color:"#ef4444", price:"$25", steps:["Подать заявку на evisa.xuatnhapcanh.gov.vn","Оплатить $25","Получить eVisa за 3 рабочих дня","Распечатать и лететь"], docs:["Загранпаспорт (6+ мес.)","Фото 4×6","Кредитная карта для оплаты","Обратный билет"], tips:["Оформляйте за 2 недели","eVisa действует однократно","Можно продлить внутри страны"] },
+  "Египет":  { flag:"🇪🇬", name:"Египет (Шарм)", type:"Виза по прилёту", days:"до 30 дней", color:"#f59e0b", price:"$25", steps:["Купить авиабилет","На паспортном контроле заполнить анкету","Оплатить $25 наличными","Получить визу — занимает 10-20 мин"], docs:["Загранпаспорт","$25 наличными USD","Заполненная анкета (выдают на борту)"], tips:["Только Sinai Only — бесплатно до курортной зоны","Полная виза $25 — весь Египет","Торговаться в сувенирных лавках нормально"] },
+  "Индия":   { flag:"🇮🇳", name:"Индия", type:"eVisa онлайн", days:"до 60 дней", color:"#f97316", price:"$25–80", steps:["Подать заявку на indianvisaonline.gov.in","Заполнить анкету","Оплатить $25-80","Получить eVisa за 72 часа"], docs:["Загранпаспорт (6+ мес.)","Цифровое фото","Кредитная карта","Обратный билет"], tips:["Подавайте за 4+ дня","eVisa двукратная — можно въехать дважды","Прививки от гепатита рекомендуются"] },
+  "Мальдивы":{ flag:"🇲🇻", name:"Мальдивы", type:"Виза по прилёту", days:"до 30 дней", color:"#06b6d4", price:"бесплатно", steps:["Купить авиабилет","Забронировать отель или бунгало","Виза выдаётся при прилёте бесплатно","Срок — 30 дней автоматически"], docs:["Загранпаспорт","Обратный билет","Подтверждение проживания","$100+ на счету"], tips:["Алкоголь только на курортах","Перелёт на острова — гидроплан или катер","Забронируйте трансфер заранее"] },
+};
+
+// ─────────────────────────── Visa Pages ─────────────────────────
+function VisaPage({ onNav, onVisaDest }: { onNav:(p:Page)=>void; onVisaDest:(k:string)=>void }) {
+  const [tab, setTab] = useState<"from"|"to">("from");
+
+  return (
+    <div className="page-top">
+      <div className="visa-hero">
+        <div className="site-container">
+          <span className="section-tag">Визовая поддержка</span>
+          <h1>🛂 Визовый гид для граждан Узбекистана</h1>
+          <p>Актуальная информация на 2025–2026 · Источники: МИД Узбекистана, Visaguide.world, Kursiv.media</p>
+          <div className="visa-tabs">
+            <button className={`visa-tab${tab==="from"?" active":""}`} onClick={() => setTab("from")}>
+              ✈️ Из Узбекистана — куда можно без визы
+            </button>
+            <button className={`visa-tab${tab==="to"?" active":""}`} onClick={() => setTab("to")}>
+              🌍 В Узбекистан — кто приезжает без визы
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="site-container" style={{ padding:"36px 20px 60px" }}>
+        {tab === "from" && (
+          <>
+            <div className="visa-info-bar">
+              <span>📊 Паспорт Узбекистана — рейтинг <strong>#80</strong> в мире</span>
+              <span>🌍 Доступно <strong>~60 стран</strong> без визы или виза по прилёту</span>
+              <span>📅 Обновлено: <strong>2025–2026</strong></span>
+            </div>
+            {VISA_FROM_UZ.map(group => (
+              <div key={group.region} className="visa-group">
+                <div className="visa-group-title" style={{ borderLeftColor: group.color }}>
+                  {group.region}
+                </div>
+                <div className="visa-list">
+                  {group.items.map(item => {
+                    const hasGuide = !!VISA_DEST_GUIDES[item.name];
+                    return (
+                      <div key={item.name}
+                        className={`visa-item${hasGuide ? " clickable" : ""}`}
+                        onClick={() => hasGuide && onVisaDest(item.name)}>
+                        <span className="vi-flag">{item.flag}</span>
+                        <span className="vi-name">{item.name}</span>
+                        <span className="vi-days">{item.days}</span>
+                        <span className="vi-badge" style={{ background: item.note.includes("eVisa") ? "rgba(139,92,246,0.15)" : item.note.includes("прилёту") ? "rgba(245,158,11,0.15)" : "rgba(34,197,94,0.15)", color: item.note.includes("eVisa") ? "#8b5cf6" : item.note.includes("прилёту") ? "#d97706" : "#16a34a" }}>
+                          {item.note}
+                        </span>
+                        {hasGuide && <span className="vi-guide">Полный гид →</span>}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </>
+        )}
+
+        {tab === "to" && (
+          <>
+            <div className="visa-info-bar">
+              <span>🌍 Узбекистан открыт для <strong>86+ стран</strong> без визы</span>
+              <span>📅 С октября 2025 добавлены: Китай, ОАЭ, Катар, Саудовская Аравия</span>
+            </div>
+            {VISA_TO_UZ.map(group => (
+              <div key={group.region} className="visa-group">
+                <div className="visa-group-title" style={{ borderLeftColor: group.color }}>
+                  {group.region}
+                </div>
+                <div className="visa-list visa-list-compact">
+                  {group.items.map((country: string) => (
+                    <div key={country} className="visa-item-simple">
+                      <span className="vi-dot" style={{ background: group.color }} />
+                      <span className="vi-name">{country}</span>
+                      <span className="vi-badge" style={{ background:"rgba(34,197,94,0.12)", color:"#16a34a" }}>Без визы 30 дней</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </>
+        )}
+
+        <div className="cta-banner" style={{ marginTop:40 }}>
+          <h3>🛂 Нужна помощь с визой?</h3>
+          <p>Мы помогаем с оформлением виз, приглашений и страховок для выезда</p>
+          <div className="cta-btns">
+            <button className="btn-primary" onClick={() => onNav("contacts")}>Получить консультацию</button>
+            <a className="btn-outline" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer">💬 Telegram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VisaDestPage({ destKey, onBack, onNav }: { destKey:string; onBack:()=>void; onNav:(p:Page)=>void }) {
+  const g = VISA_DEST_GUIDES[destKey];
+  if (!g) return <div className="page-top"><div className="site-container"><p>Информация не найдена</p></div></div>;
+  return (
+    <div className="page-top">
+      <div className="visa-dest-hero" style={{ borderBottom:`3px solid ${g.color}` }}>
+        <div className="site-container">
+          <button className="back-btn" onClick={onBack}>← Визовый гид</button>
+          <h1>{g.flag} {g.name}</h1>
+          <div className="visa-dest-meta">
+            <span className="vdm-badge" style={{ background:`${g.color}22`, color:g.color, border:`1px solid ${g.color}44` }}>
+              {g.type}
+            </span>
+            <span className="vdm-badge" style={{ background:"rgba(255,255,255,0.08)", color:"rgba(255,255,255,0.8)" }}>
+              📅 {g.days}
+            </span>
+            <span className="vdm-badge" style={{ background:"rgba(255,255,255,0.08)", color:"rgba(255,255,255,0.8)" }}>
+              💰 {g.price}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="site-container" style={{ padding:"36px 20px 60px" }}>
+        <div className="visa-dest-grid">
+          <div className="vd-card">
+            <h3>📋 Как получить</h3>
+            <ol className="vd-steps">
+              {g.steps.map((s,i) => (
+                <li key={i}><span className="vd-step-num">{i+1}</span>{s}</li>
+              ))}
+            </ol>
+          </div>
+          <div className="vd-card">
+            <h3>📁 Документы</h3>
+            <ul className="vd-docs">
+              {g.docs.map((d,i) => <li key={i}>✓ {d}</li>)}
+            </ul>
+          </div>
+          <div className="vd-card vd-card-full">
+            <h3>💡 Важные советы</h3>
+            <div className="vd-tips">
+              {g.tips.map((t,i) => <div key={i} className="vd-tip">⚡ {t}</div>)}
+            </div>
+          </div>
+        </div>
+
+        <div className="cta-banner" style={{ marginTop:32 }}>
+          <h3>Нужна помощь с оформлением?</h3>
+          <p>Поможем с документами, страховкой и подготовкой к поездке в {g.name}</p>
+          <div className="cta-btns">
+            <button className="btn-primary" onClick={() => onNav("contacts")}>Оставить заявку</button>
+            <a className="btn-outline" href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer">💬 Telegram</a>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
