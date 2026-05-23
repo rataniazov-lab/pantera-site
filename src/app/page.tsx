@@ -212,14 +212,33 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
       {/* Cruise promo */}
       <div className="sec sec-gray">
         <div className="site-container">
-          <div className="cruise-box">
-            <div>
-              <span className="tag">Новое направление</span>
-              <h2>🚢 Круизы по всему миру</h2>
-              <p>Забудьте про Титаник — современные круизы это 5★ плавучий отель. 27 миллионов человек каждый год выбирают круизы.</p>
-              <button className="btn-primary" style={{ marginTop:18 }} onClick={() => onNav("cruise")}>Узнать про круизы →</button>
-            </div>
-            <div className="cruise-emoji">🚢</div>
+          <span className="section-tag">Круизы</span>
+          <h2 className="section-title">🚢 Круизы из Ташкента</h2>
+          <p className="section-sub">Плавучий отель 5★ — вы спите, а вокруг меняются страны</p>
+          <div className="cruise-dest-grid">
+            {[
+              { img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779520521/%D0%9A%D0%90%D0%A0%D0%9B%D0%9E%D0%92%D0%AB_e4xtis.png", title:"Круиз по ОАЭ",    sub:"Дубай, Абу-Даби, Оман", price:"от $499 / чел.", emoji:"🇦🇪" },
+              { img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779520521/%D0%A1%D0%A2%D0%90%D0%9C%D0%91%D0%A3%D0%9B_xak5js.png", title:"Круиз по Турции", sub:"Стамбул, Измир, Бодрум", price:"от $549 / чел.", emoji:"🇹🇷" },
+              { img:"https://res.cloudinary.com/dass5gqvk/image/upload/v1779487245/tai_at5qsu.png",                                         title:"Круиз по Азии",   sub:"Таиланд, Малайзия, Сингапур", price:"от $699 / чел.", emoji:"🌏" },
+              { img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=70",                                              title:"Круиз по Европе", sub:"Италия, Греция, Испания", price:"от $599 / чел.", emoji:"🇪🇺" },
+            ].map(c => (
+              <div key={c.title} className="cruise-dest-card" onClick={() => onNav("cruise")}>
+                <div className="cruise-dest-img">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={c.img} alt={c.title} loading="lazy" />
+                  <div className="cruise-dest-overlay" />
+                  <span className="cruise-dest-emoji">{c.emoji}</span>
+                </div>
+                <div className="cruise-dest-body">
+                  <h3>{c.title}</h3>
+                  <p>{c.sub}</p>
+                  <div className="cruise-dest-footer">
+                    <span className="cruise-dest-price">{c.price}</span>
+                    <span className="cruise-dest-btn">Подробнее →</span>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
