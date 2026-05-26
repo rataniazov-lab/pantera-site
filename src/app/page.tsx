@@ -92,106 +92,6 @@ function PriceBlock({ price, dark = false }: { price: string; dark?: boolean }) 
   );
 }
 
-// ─────────────────────────── Nav ────────────────────────────────
-const UZ_CITIES = [
-  { name:"Tashkent",   emoji:"🏙️" },
-  { name:"Samarkand",  emoji:"🕌" },
-  { name:"Bukhara",    emoji:"🏛️" },
-  { name:"Khiva",      emoji:"🏰" },
-  { name:"Muynak",     emoji:"🌊" },
-];
-
-function Nav({ page, onNav, mob, onMob }: {
-  page: Page; onNav: (p: Page) => void; mob: boolean; onMob: () => void;
-}) {
-  const [lang, setLang] = useState<"RU"|"UZ"|"EN"|"ZH">("RU");
-  const [uzOpen, setUzOpen] = useState(false);
-  const links: [Page, string][] = [
-    ["home","Главная"], ["directions","Направления"], ["cruise","Круизы"], ["sanatorium","🏥 Санаторий"], ["videos","Видео"],
-  ];
-  return (
-    <>
-      <nav className="nav nav-two-row">
-
-        {/* ── Top row: logo + lang + cta ── */}
-        <div className="nav-top">
-          <button className="nav-logo" onClick={() => onNav("home")}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={LOGO} alt="PANTERA LUXE" width={38} height={38} />
-            <div className="nav-logo-text">
-              <span className="name">PANTERA LUXE</span>
-              <span className="sub">Туры из Ташкента</span>
-            </div>
-          </button>
-          <div style={{ display:"flex", alignItems:"center", gap:8 }}>
-            <div className="lang-switcher">
-              {(["RU","UZ","EN","ZH"] as const).map(l => (
-                <button key={l} className={`lang-btn${lang === l ? " active" : ""}`} onClick={() => setLang(l)}>{l}</button>
-              ))}
-            </div>
-            <button className="nav-cta nav-cta-desktop" onClick={() => onNav("contacts")}>Оставить заявку</button>
-            <button className="hamburger" onClick={onMob}>
-              <span style={mob ? { transform:"rotate(45deg) translate(5px,5px)" } : {}} />
-              <span style={mob ? { opacity:0 } : {}} />
-              <span style={mob ? { transform:"rotate(-45deg) translate(5px,-5px)" } : {}} />
-            </button>
-          </div>
-        </div>
-
-        {/* ── Bottom row: links + uzbekistan dropdown ── */}
-        <div className="nav-bottom">
-          <div className="nav-links">
-            {links.map(([p, l]) => (
-              <button key={p} className={`nav-link${page === p ? " active" : ""}`} onClick={() => onNav(p)}>{l}</button>
-            ))}
-          </div>
-          <div className="nav-divider" />
-          <button className="nav-link visa-btn" onClick={() => onNav("visa")}>🛂 Визовая поддержка</button>
-          <div className="nav-divider" />
-          <div className="uz-dropdown-wrap" onMouseEnter={() => setUzOpen(true)} onMouseLeave={() => setUzOpen(false)}>
-            <button className={`uz-btn${uzOpen ? " open" : ""}`}>
-              🇺🇿 Uzbekistan Tours <span className="uz-arrow">▾</span>
-            </button>
-            {uzOpen && (
-              <div className="uz-menu">
-                <div className="uz-menu-inner">
-                <div className="uz-menu-label">Ancient Silk Road Cities</div>
-                {UZ_CITIES.map(c => (
-                  <button key={c.name} className="uz-item" onClick={() => onNav("contacts")}>
-                    {c.emoji} {c.name}
-                  </button>
-                ))}
-                <div className="uz-menu-footer">
-                  <button className="uz-all" onClick={() => onNav("directions")}>View all Uzbekistan tours →</button>
-                </div>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-      </nav>
-
-      <div className={`mob-menu${mob ? " open" : ""}`}>
-        <button className="mob-close" onClick={onMob}>✕</button>
-        {([...links, ["visa","🛂 Визовая поддержка"], ["contacts","Контакты"]] as [Page,string][]).map(([p,l]) => (
-          <button key={p} className="mob-link" onClick={() => { onNav(p); onMob(); }}>{l}</button>
-        ))}
-        <div className="mob-divider" />
-        <p className="mob-uz-label">🇺🇿 Uzbekistan Tours</p>
-        {UZ_CITIES.map(c => (
-          <button key={c.name} className="mob-link" style={{ fontSize:18, color:"rgba(255,210,120,0.9)" }}
-            onClick={() => { onNav("contacts"); onMob(); }}>
-            {c.emoji} {c.name}
-          </button>
-        ))}
-      </div>
-
-
-    </>
-  );
-}
-
 // ─────────────────────────── Home ───────────────────────────────
 function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>void }) {
   const cd = useCountdown();
@@ -845,49 +745,14 @@ function ContactsPage() {
   );
 }
 
-// ─────────────────────────── Footer ─────────────────────────────
-function Footer({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>void }) {
-  return (
-    <footer>
-      <div className="footer-inner">
-        <div className="footer-grid">
-          <div className="f-brand">
-            <div className="f-logo">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={LOGO} alt="PANTERA LUXE" width={38} height={38} loading="lazy" />
-              <span>PANTERA LUXE</span>
-            </div>
-            <p>Туристическое агентство в Ташкенте. 10 лет, 5000+ туристов.</p>
-            <p style={{ marginTop:8 }}>📍 г.Ташкент, Юнусабадский район, пр. Амир Темур 99а · ⏰ 10:00–21:00</p>
-          </div>
-          <div className="f-col">
-            <h4>Контакты</h4>
-            <ul>
-              <li><a href="tel:+998771618888">+998 77 161 88 88</a></li>
-              <li><a href="https://t.me/vilet_support" target="_blank" rel="noopener noreferrer" className="footer-ig-link"><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg" alt="Telegram" className="footer-soc-icon" />Telegram</a></li>
-              <li><a href="https://www.instagram.com/tury_tashkent/" target="_blank" rel="noopener noreferrer" className="footer-ig-link"><img src="https://res.cloudinary.com/dass5gqvk/image/upload/v1779538594/Instagram_qdbqub.png" alt="Instagram" className="footer-soc-icon" />Instagram</a></li>
-              <li><a href="https://t.me/tury_iz_tashkenta"            target="_blank" rel="noopener noreferrer">Горящие туры</a></li>
-            </ul>
-          </div>
-        </div>
-        <div className="f-bottom">
-          <p>© 2026 PANTERA LUXE. Все права защищены.</p>
-          <p>🌍 Туры из Ташкента, Узбекистан</p>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 // ─────────────────────────── Root ───────────────────────────────
 export default function Home() {
   const [page,    setPage]    = useState<Page>("home");
   const [destKey, setDestKey] = useState("dubai");
-  const [mob,     setMob]     = useState(false);
   const [showTop, setShowTop] = useState(false);
 
   const nav = useCallback((p: Page) => {
-    setPage(p); setMob(false); window.scrollTo({ top:0, behavior:"smooth" });
+    setPage(p); window.scrollTo({ top:0, behavior:"smooth" });
   }, []);
 
   const openDest = useCallback((k: string) => {
@@ -902,7 +767,6 @@ export default function Home() {
 
   return (
     <>
-      <Nav page={page} onNav={nav} mob={mob} onMob={() => setMob(v => !v)} />
 
       <main>
         {page === "home"       && <HomePage       onNav={nav} onDest={openDest} />}
@@ -916,7 +780,6 @@ export default function Home() {
         {page === "visadest"  && <VisaDestPage    destKey={destKey} onBack={() => nav("visa")} onNav={nav} />}
       </main>
 
-      <Footer onNav={nav} onDest={openDest} />
 
       {/* Floating buttons */}
       <div className="float-w">
