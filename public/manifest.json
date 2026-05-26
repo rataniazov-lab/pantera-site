@@ -1,0 +1,31 @@
+{
+  "name": "PANTERA LUXE — Туры из Ташкента",
+  "short_name": "PANTERA LUXE",
+  "description": "Туристическое агентство в Ташкенте. Туры в Дубай, Турцию, Египет, Мальдивы.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1b2a",
+  "theme_color": "#ff6b35",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://res.cloudinary.com/dass5gqvk/image/upload/v1779576719/icon_fsztwb.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/dass5gqvk/image/upload/v1779576701/apple-icon_hgfowj.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "https://res.cloudinary.com/dass5gqvk/image/upload/v1779385406/pantera_luxe_logo_v0gbmo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["travel", "lifestyle"],
+  "lang": "ru",
+  "dir": "ltr"
+}

@@ -788,7 +788,7 @@ function ContactsPage() {
   const contactItems: [string,string,string,string|undefined,string][] = [
     ["📞","rgba(255,107,53,0.1)","Телефон","tel:+998771618888","+998 77 161 88 88"],
     ["✉️","rgba(33,150,243,0.1)","Email","mailto:uz@exploremore.travel","uz@exploremore.travel"],
-    ["📍","rgba(6,182,212,0.1)","Офис",undefined,"Ташкент, Амир Темур 99а"],
+    ["📍","rgba(6,182,212,0.1)","Офис",undefined,"г.Ташкент, Юнусабадский район, пр. Амир Темур 99а"],
     ["⏰","rgba(34,197,94,0.1)","Режим работы",undefined,"10:00 – 21:00, ежедневно"],
   ];
   return (
@@ -858,7 +858,7 @@ function Footer({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>vo
               <span>PANTERA LUXE</span>
             </div>
             <p>Туристическое агентство в Ташкенте. 10 лет, 5000+ туристов.</p>
-            <p style={{ marginTop:8 }}>📍 Ташкент, Амир Темур 99а · ⏰ 10:00–21:00</p>
+            <p style={{ marginTop:8 }}>📍 г.Ташкент, Юнусабадский район, пр. Амир Темур 99а · ⏰ 10:00–21:00</p>
           </div>
           <div className="f-col">
             <h4>Контакты</h4>
@@ -871,7 +871,7 @@ function Footer({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>vo
           </div>
         </div>
         <div className="f-bottom">
-          <p>© 2025 PANTERA LUXE. Все права защищены.</p>
+          <p>© 2026 PANTERA LUXE. Все права защищены.</p>
           <p>🌍 Туры из Ташкента, Узбекистан</p>
         </div>
       </div>
