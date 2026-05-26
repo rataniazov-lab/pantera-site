@@ -786,13 +786,13 @@ footer { background: var(--dark); color: rgba(255,255,255,0.62); padding: 44px 2
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; margin-bottom: 36px; }
 .f-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
 .f-logo img { height: 38px; width: auto; }
-.f-logo span { color: #fff; font-weight: 800; font-size: 15px; }
-.f-brand p { font-size: 13px; line-height: 1.55; max-width: 240px; }
-.f-col h4 { color: #fff; font-weight: 700; font-size: 13px; margin-bottom: 12px; }
+.f-logo span { color: #fff; font-weight: 800; font-size: 18px; }
+.f-brand p { font-size: 15px; line-height: 1.65; max-width: 280px; }
+.f-col h4 { color: #fff; font-weight: 700; font-size: 16px; margin-bottom: 14px; }
 .f-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.f-col ul li a, .f-col ul li button { color: rgba(255,255,255,0.5); font-size: 13px; transition: color 0.2s; cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; }
+.f-col ul li a, .f-col ul li button { color: rgba(255,255,255,0.6); font-size: 15px; transition: color 0.2s; cursor: pointer; background: none; border: none; font-family: inherit; padding: 0; }
 .f-col ul li a:hover, .f-col ul li button:hover { color: var(--accent); }
-.f-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 9px; font-size: 12px; }
+.f-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 9px; font-size: 14px; }
 
 /* ── Float buttons ── */
 .float-w { position: fixed; bottom: 24px; right: 16px; z-index: 80; display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }

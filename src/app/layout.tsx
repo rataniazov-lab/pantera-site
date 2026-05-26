@@ -181,7 +181,7 @@ function SeoFooter() {
             {href:"/uzbekistan-tours/silk-road",     label:"Silk Road Tour"},
           ].map(l => (
             <a key={l.href} href={l.href} style={{
-              color:"rgba(255,255,255,0.45)", fontSize:11,
+              color:"rgba(255,255,255,0.65)", fontSize:14,
               textDecoration:"none", transition:"color 0.2s",
             }}>
               {l.label}
