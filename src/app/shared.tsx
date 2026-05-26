@@ -107,15 +107,25 @@ export function CTABlock({ title = "Готовы лететь?" }: { title?: str
       <p>Оставьте заявку — подберём лучший тур и отель под ваш бюджет</p>
       <div className="cta-btns">
         <a className="btn-primary" href="/contacts">Оставить заявку</a>
-        <a className="btn-outline" href={TG} target="_blank" rel="noopener noreferrer">
+        <a href={TG} target="_blank" rel="noopener noreferrer"
+          style={{
+            display:"inline-flex", alignItems:"center", gap:8,
+            background:"#2ca5e0", color:"#fff", fontWeight:700, fontSize:14,
+            padding:"10px 22px", borderRadius:11, textDecoration:"none",
+            border:"none", cursor:"pointer",
+          }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={TG_ICON} alt="Telegram"
-            style={{ width:16, height:16, verticalAlign:"middle", marginRight:6 }} />
+          <img src={TG_ICON} alt="Telegram" style={{ width:20, height:20, objectFit:"contain" }} />
           Telegram
         </a>
-        <a className="btn-outline" href={`tel:${PHONE}`}
-          style={{ textDecoration:"none" }}>
-          📞 {PHONE_DISPLAY}
+        <a href={`tel:${PHONE}`}
+          style={{
+            display:"inline-flex", alignItems:"center", gap:8,
+            background:"#25d366", color:"#fff", fontWeight:700, fontSize:14,
+            padding:"10px 22px", borderRadius:11, textDecoration:"none",
+            border:"none", cursor:"pointer",
+          }}>
+          📞 Позвонить
         </a>
       </div>
     </div>
