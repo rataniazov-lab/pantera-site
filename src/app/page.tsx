@@ -228,9 +228,23 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
         <div className="site-container">
           <span className="section-tag">Услуги</span>
           <h2 className="section-title">Что мы делаем</h2>
-          <div className="svc-grid">
-            {[["✈️","Туры из Ташкента","Авиабилеты + отель"],["🏥","Медицинский туризм","Турция, Корея"],["🚢","Круизы","Мировые маршруты"],["🏨","Отели по миру","100 000+ вариантов"],["🚗","Трансферы","Аэропорт и авто"],["👥","Групповые туры","Экономия до 30%"]].map(([i,t,s]) => (
-              <div key={t} className="svc-card"><div className="ico">{i}</div><h3>{t}</h3><p>{s}</p></div>
+          <div className="svc-list">
+            {[
+              ["🎫","Авиабилеты",       "Поиск и бронирование лучших рейсов"],
+              ["✈️","Туры из Ташкента", "Авиабилеты + отель + трансфер"],
+              ["🏥","Медицинский туризм","Турция, Корея — клиники мирового уровня"],
+              ["🚢","Круизы",           "Мировые маршруты — 5 стран за 1 поездку"],
+              ["🏨","Отели по миру",    "100 000+ вариантов 4★–5★"],
+              ["🚗","Трансферы",        "Аэропорт, авто, сопровождение"],
+              ["👥","Групповые туры",   "Экономия до 30% в группе"],
+            ].map(([i,t,s]) => (
+              <div key={t} className="svc-list-item">
+                <span className="svc-list-ico">{i}</span>
+                <div className="svc-list-text">
+                  <span className="svc-list-title">{t}</span>
+                  <span className="svc-list-sub">{s}</span>
+                </div>
+              </div>
             ))}
           </div>
         </div>
