@@ -12,11 +12,11 @@ const WA_ICON = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779539173/W
 const PHONE   = "+998771618888";
 
 const NAV_LINKS = [
-  { href: "/",              label: "Главная"    },
-  { href: "/directions",    label: "Направления"},
-  { href: "/cruise",        label: "Круизы"     },
-  { href: "/sanatorium",    label: "🏥 Санаторий"},
-  { href: "/",              label: "Видео"      },
+  { href: "/",           label: "Главная"    },
+  { href: "/directions", label: "Направления"},
+  { href: "/cruise",     label: "Круизы"     },
+  { href: "/sanatorium", label: "🏥 Санаторий"},
+  { href: "/videos",     label: "Видео"      },
 ];
 
 const UZ_CITIES = [
