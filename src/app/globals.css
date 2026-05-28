@@ -1242,3 +1242,46 @@ button {
   .svc-list { grid-template-columns: 1fr; }
   .svc-list-item { padding: 10px 12px; }
 }
+
+/* ── Single row navbar ────────────────────── */
+.nav-single-row {
+  background: rgba(13,27,42,0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 20px;
+  height: 58px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+.nav-inner .nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  margin: 0 8px;
+  overflow: hidden;
+}
+.nav-inner .nav-link {
+  font-size: 13px;
+  padding: 5px 9px;
+  white-space: nowrap;
+}
+.nav-inner .uz-btn {
+  font-size: 13px;
+  padding: 5px 10px;
+}
+@media (min-width: 881px) {
+  .nav-inner .nav-link { font-size: 14px; padding: 5px 11px; }
+  .nav-inner .uz-btn   { font-size: 14px; padding: 5px 12px; }
+}
+@media (max-width: 880px) {
+  .nav-inner .nav-links { display: none; }
+}

@@ -12,11 +12,11 @@ const WA_ICON = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779539173/W
 const PHONE   = "+998771618888";
 
 const NAV_LINKS = [
-  { href: "/",           label: "Главная"    },
-  { href: "/directions", label: "Направления"},
-  { href: "/cruise",     label: "Круизы"     },
-  { href: "/sanatorium", label: "🏥 Санаторий"},
-  { href: "/videos",     label: "Видео"      },
+  { href: "/",              label: "Главная"    },
+  { href: "/directions",    label: "Направления"},
+  { href: "/cruise",        label: "Круизы"     },
+  { href: "/sanatorium",    label: "🏥 Санаторий"},
+  { href: "/videos",        label: "Видео"      },
 ];
 
 const UZ_CITIES = [
@@ -34,30 +34,65 @@ export default function SeoNavbar() {
 
   return (
     <>
-      <nav className="nav nav-two-row" style={{ position:"fixed", top:0, left:0, right:0, zIndex:100 }}>
+      <nav className="nav nav-single-row" style={{ position:"fixed", top:0, left:0, right:0, zIndex:100 }}>
+        <div className="nav-inner">
 
-        {/* ── Top row ── */}
-        <div className="nav-top">
-          <a href="/" className="nav-logo" style={{ textDecoration:"none" }}>
+          {/* ── Logo ── */}
+          <a href="/" className="nav-logo" style={{ textDecoration:"none", flexShrink:0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={LOGO} alt="PANTERA LUXE" width={38} height={38} />
+            <img src={LOGO} alt="PANTERA LUXE" width={34} height={34} />
             <div className="nav-logo-text">
               <span className="name">PANTERA LUXE</span>
               <span className="sub">turytashkent.com</span>
             </div>
           </a>
-          <div style={{ display:"flex", alignItems:"center", gap:8 }}>
+
+          {/* ── Links ── */}
+          <div className="nav-links">
+            {NAV_LINKS.map(l => (
+              <a key={l.href} href={l.href} className="nav-link" style={{ textDecoration:"none" }}>
+                {l.label}
+              </a>
+            ))}
+            <a href="/visa" className="nav-link visa-btn" style={{ textDecoration:"none" }}>
+              🛂 Визы
+            </a>
+            <div className="uz-dropdown-wrap"
+              onMouseEnter={() => setUzOpen(true)}
+              onMouseLeave={() => setUzOpen(false)}>
+              <button className={`uz-btn${uzOpen ? " open" : ""}`}>
+                🇺🇿 Uzbekistan <span className="uz-arrow">▾</span>
+              </button>
+              {uzOpen && (
+                <div className="uz-menu">
+                  <div className="uz-menu-inner">
+                    <div className="uz-menu-label">Ancient Silk Road Cities</div>
+                    {UZ_CITIES.map(c => (
+                      <a key={c.href} href={c.href} className="uz-item" style={{ textDecoration:"none" }}>
+                        {c.emoji} {c.label}
+                      </a>
+                    ))}
+                    <div className="uz-menu-footer">
+                      <a href="/uzbekistan-tours/silk-road" className="uz-all" style={{ textDecoration:"none" }}>
+                        View all Uzbekistan tours →
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* ── Right side ── */}
+          <div style={{ display:"flex", alignItems:"center", gap:8, flexShrink:0 }}>
             <div className="lang-switcher">
               {(["RU","UZ","EN","ZH"] as const).map(l => (
-                <button key={l}
-                  className={`lang-btn${lang === l ? " active" : ""}`}
-                  onClick={() => setLang(l)}>
+                <button key={l} className={`lang-btn${lang === l ? " active" : ""}`} onClick={() => setLang(l)}>
                   {l}
                 </button>
               ))}
             </div>
-            <a className="btn-primary nav-cta nav-cta-desktop" href="/contacts"
-              style={{ textDecoration:"none" }}>
+            <a className="btn-primary nav-cta nav-cta-desktop" href="/contacts" style={{ textDecoration:"none" }}>
               Оставить заявку
             </a>
             <button className="hamburger" aria-label="Меню" onClick={() => setMob(v => !v)}>
@@ -66,50 +101,7 @@ export default function SeoNavbar() {
               <span style={mob ? { transform:"rotate(-45deg) translate(5px,-5px)" } : {}} />
             </button>
           </div>
-        </div>
 
-        {/* ── Bottom row ── */}
-        <div className="nav-bottom">
-          <div className="nav-links">
-            {NAV_LINKS.map(l => (
-              <a key={l.href} href={l.href} className="nav-link"
-                style={{ textDecoration:"none" }}>
-                {l.label}
-              </a>
-            ))}
-          </div>
-          <div className="nav-divider" />
-          <a href="/visa" className="nav-link visa-btn" style={{ textDecoration:"none" }}>
-            🛂 Визовая поддержка
-          </a>
-          <div className="nav-divider" />
-          {/* Uzbekistan Tours dropdown */}
-          <div className="uz-dropdown-wrap"
-            onMouseEnter={() => setUzOpen(true)}
-            onMouseLeave={() => setUzOpen(false)}>
-            <button className={`uz-btn${uzOpen ? " open" : ""}`}>
-              🇺🇿 Uzbekistan Tours <span className="uz-arrow">▾</span>
-            </button>
-            {uzOpen && (
-              <div className="uz-menu">
-                <div className="uz-menu-inner">
-                  <div className="uz-menu-label">Ancient Silk Road Cities</div>
-                  {UZ_CITIES.map(c => (
-                    <a key={c.href} href={c.href} className="uz-item"
-                      style={{ textDecoration:"none" }}>
-                      {c.emoji} {c.label}
-                    </a>
-                  ))}
-                  <div className="uz-menu-footer">
-                    <a href="/uzbekistan-tours/silk-road" className="uz-all"
-                      style={{ textDecoration:"none" }}>
-                      View all Uzbekistan tours →
-                    </a>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
         </div>
       </nav>
 
