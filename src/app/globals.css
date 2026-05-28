@@ -892,7 +892,7 @@ footer { background: var(--dark); color: rgba(255,255,255,0.62); padding: 44px 2
   .nav-link { font-size: 15px; padding: 6px 14px; }
   .nav-cta { font-size: 15px; padding: 9px 22px; }
   .uz-btn { font-size: 15px; padding: 6px 16px; }
-  .page-top { padding-top: 100px; }
+  .page-top { padding-top: 0; }
   .hamburger { display: none !important; }
   .nav-cta-desktop { display: inline-block; }
 
