@@ -100,6 +100,7 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
       {/* Hero */}
       <div className="hero">
         <div className="hero-bg" />
+        <div className="hero-after" />
         <div className="hero-content">
           <div className="hero-badge">✈️ Туристическое агентство в Ташкенте</div>
           <h1>Откройте мир<br />вместе с <span>PANTERA LUXE</span></h1>

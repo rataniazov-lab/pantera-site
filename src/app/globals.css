@@ -342,7 +342,7 @@ a { color: inherit; text-decoration: none; }
 .hero-bg {
   position: absolute; inset: 0;
   background: url('https://res.cloudinary.com/dass5gqvk/image/upload/v1779136730/screen1_nh1iwk.jpg') center/cover no-repeat;
-  opacity: 0.62;
+  opacity: 0.78;
 }
 @media (max-width: 880px) {
   .hero-bg {
@@ -350,6 +350,7 @@ a { color: inherit; text-decoration: none; }
   }
 }
 
+.hero-after { position: absolute; inset: 0; background: linear-gradient(to top, rgba(191,58,0,0.15) 0%, transparent 60%); z-index: 1; }
 .hero-content { position: relative; z-index: 2; text-align: center; padding: 40px 20px; }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 7px;
@@ -377,7 +378,7 @@ a { color: inherit; text-decoration: none; }
 
 /* ── Hot strip ── */
 .hot-strip {
-  background: linear-gradient(135deg, #1a0800, #3d1500);
+  background: linear-gradient(135deg, #bf3a00, #ff5500);
   padding: 12px 20px; display: flex; align-items: center;
   justify-content: center; gap: 14px; flex-wrap: wrap;
 }
