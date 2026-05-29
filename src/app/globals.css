@@ -1287,3 +1287,42 @@ button {
 @media (max-width: 880px) {
   .nav-inner .nav-links { display: none; }
 }
+
+@media (max-width: 880px) {
+  .hot-strip {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    padding: 10px 16px;
+    gap: 10px;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+  }
+  /* Add padding to body so content not hidden behind fixed strip */
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+/* ── Mobile navbar fixes ── */
+@media (max-width: 880px) {
+  .nav-inner {
+    justify-content: space-between;
+  }
+  .nav-travel {
+    color: #ff6b35;
+    font-weight: 600;
+  }
+  .nav-sub-hide {
+    display: none;
+  }
+  .nav-logo-text .name {
+    font-size: 15px;
+    font-weight: 800;
+  }
+  /* Hamburger to far right */
+  .hamburger {
+    margin-left: auto;
+  }
+}

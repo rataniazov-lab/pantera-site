@@ -42,8 +42,8 @@ export default function SeoNavbar() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={LOGO} alt="PANTERA LUXE" width={34} height={34} />
             <div className="nav-logo-text">
-              <span className="name">Pantera Luxe</span>
-              <span className="sub">turytashkent.com</span>
+              <span className="name">Pantera Luxe <span className="nav-travel">Travel</span></span>
+              <span className="sub nav-sub-hide">turytashkent.com</span>
             </div>
           </a>
 
