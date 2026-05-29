@@ -1245,11 +1245,9 @@ button {
 
 /* ── Single row navbar ────────────────────── */
 .nav-single-row {
-  background: rgba(15,28,45,0.96);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255,107,53,0.3);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  background: #0f1c2d;
+  border-bottom: 3px solid #ff6b35;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
 }
 .nav-inner {
   display: flex;
