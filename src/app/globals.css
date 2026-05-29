@@ -204,7 +204,7 @@ a { color: inherit; text-decoration: none; }
 
 .nav-links { display: flex; align-items: center; gap: 1px; }
 .nav-link {
-  color: #1e293b; font-size: 14px; font-weight: 600;
+  color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 600;
   padding: 5px 11px; border-radius: 7px;
   background: none; border: none;
   transition: background 0.2s, color 0.2s; cursor: pointer;
@@ -223,7 +223,7 @@ a { color: inherit; text-decoration: none; }
 .uz-btn {
   display: flex; align-items: center; gap: 6px;
   background: rgba(255,185,60,0.1); border: 1px solid rgba(255,185,60,0.28);
-  color: #1e293b; font-size: 14px; font-weight: 700;
+  color: rgba(255,215,120,0.95); font-size: 14px; font-weight: 700;
   padding: 5px 12px; border-radius: 7px; cursor: pointer;
   font-family: inherit; transition: background 0.2s;
 }
@@ -1245,11 +1245,11 @@ button {
 
 /* ── Single row navbar ────────────────────── */
 .nav-single-row {
-  background: rgba(255,255,255,0.97);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0,0,0,0.08);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.12);
+  background: rgba(15,28,45,0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255,107,53,0.3);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.4);
 }
 .nav-inner {
   display: flex;
