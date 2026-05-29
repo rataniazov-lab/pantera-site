@@ -350,7 +350,10 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 880px) {
   .hero-bg {
-    background: url("https://res.cloudinary.com/dass5gqvk/image/upload/v1779524661/%D0%A8%D0%B0%D1%80%D0%BC_enh5kh.png") center/cover no-repeat;
+    display: none;
+  }
+  .hero {
+    background: linear-gradient(160deg, #0d1b2a 0%, #0f2035 60%, #0d1b2a 100%);
   }
 }
 
