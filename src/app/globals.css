@@ -1326,3 +1326,16 @@ button {
     margin-left: auto;
   }
 }
+
+@media (max-width: 880px) {
+  .nav-logo-text .name {
+    font-size: 18px !important;
+    font-weight: 900 !important;
+  }
+  .nav-sub-hide {
+    display: none !important;
+  }
+  .nav-logo-text .sub {
+    display: none !important;
+  }
+}
