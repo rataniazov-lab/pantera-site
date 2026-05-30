@@ -102,6 +102,14 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
         <div className="hero-bg" />
         <div className="hero-after" />
         <div className="hero-content">
+          {/* Mobile group photo - shown only on mobile */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://res.cloudinary.com/dass5gqvk/image/upload/v1780112905/12_gz72q8.jpg"
+            alt="Команда Pantera Luxe Travel"
+            className="hero-mobile-top-photo"
+            loading="eager"
+          />
           <div className="hero-badge">✈️ Туристическое агентство в Ташкенте</div>
           <h1>Откройте мир<br />вместе с <span>PANTERA LUXE</span></h1>
           <p className="hero-sub">Гиды по 14+ направлениям, горящие туры, медицинский туризм, круизы.</p>
