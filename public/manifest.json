@@ -9,22 +9,13 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "https://res.cloudinary.com/dass5gqvk/image/upload/v1780166483/%D0%BB%D0%BE%D0%B3%D0%BE_%D0%B4%D0%BB%D1%8F_%D0%B3%D1%83%D0%B3%D0%BB_feun3p.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "https://res.cloudinary.com/dass5gqvk/image/upload/v1780166483/%D0%BB%D0%BE%D0%B3%D0%BE_%D0%B4%D0%BB%D1%8F_%D0%B3%D1%83%D0%B3%D0%BB_feun3p.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
-    {
-      "src": "https://res.cloudinary.com/dass5gqvk/image/upload/v1780166483/%D0%BB%D0%BE%D0%B3%D0%BE_%D0%B4%D0%BB%D1%8F_%D0%B3%D1%83%D0%B3%D0%BB_feun3p.png",
+      "src": "/web-app-manifest-192x192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "https://res.cloudinary.com/dass5gqvk/image/upload/v1780166483/%D0%BB%D0%BE%D0%B3%D0%BE_%D0%B4%D0%BB%D1%8F_%D0%B3%D1%83%D0%B3%D0%BB_feun3p.png",
+      "src": "/web-app-manifest-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

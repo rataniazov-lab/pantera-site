@@ -16,8 +16,6 @@ const manrope = Manrope({
 
 const SITE_URL  = process.env.NEXT_PUBLIC_SITE_URL || "https://turytashkent.com";
 const LOGO_URL  = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779385406/pantera_luxe_logo_v0gbmo.png";
-// Иконка сайта для поиска Google (favicon) — новый логотип
-const FAVICON   = "https://res.cloudinary.com/dass5gqvk/image/upload/v1780166483/%D0%BB%D0%BE%D0%B3%D0%BE_%D0%B4%D0%BB%D1%8F_%D0%B3%D1%83%D0%B3%D0%BB_feun3p.png";
 const TG_ICON   = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg";
 const IG_ICON   = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779538594/Instagram_qdbqub.png";
 
@@ -52,14 +50,13 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
   icons: {
     icon: [
-      { url: FAVICON, type: "image/png", sizes: "any" },
-      { url: FAVICON, type: "image/png", sizes: "32x32" },
-      { url: FAVICON, type: "image/png", sizes: "192x192" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
     ],
     apple: [
-      { url: FAVICON, sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
-    shortcut: FAVICON,
+    shortcut: "/favicon.ico",
   },
 };
 
