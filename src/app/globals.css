@@ -350,10 +350,13 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 880px) {
   .hero-bg {
-    display: none;
+    display: block;
+    background: url("https://res.cloudinary.com/dass5gqvk/image/upload/v1780112905/12_gz72q8.jpg") center top/cover no-repeat;
+    opacity: 1;
+    filter: none;
   }
   .hero {
-    background: linear-gradient(160deg, #0d1b2a 0%, #0f2035 60%, #0d1b2a 100%);
+    background: #0d1b2a;
   }
 }
 
