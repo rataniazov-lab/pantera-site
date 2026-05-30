@@ -351,7 +351,7 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 880px) {
   .hero-bg {
     display: block;
-    background: url("https://res.cloudinary.com/dass5gqvk/image/upload/v1780112905/12_gz72q8.jpg") center top/cover no-repeat;
+    background: url("https://res.cloudinary.com/dass5gqvk/image/upload/v1780112905/12_gz72q8.jpg") center top/100% auto no-repeat;
     opacity: 1;
     filter: none;
   }
