@@ -101,6 +101,13 @@ function HomePage({ onNav, onDest }: { onNav:(p:Page)=>void; onDest:(k:string)=>
       <div className="hero">
         <div className="hero-bg" />
         <div className="hero-after" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://res.cloudinary.com/dass5gqvk/image/upload/v1780112905/12_gz72q8.jpg"
+          alt="Pantera Luxe Travel группа"
+          className="hero-mobile-photo"
+          loading="eager"
+        />
         <div className="hero-content">
           <div className="hero-badge">✈️ Туристическое агентство в Ташкенте</div>
           <h1>Откройте мир<br />вместе с <span>PANTERA LUXE</span></h1>
