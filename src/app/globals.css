@@ -350,21 +350,16 @@ a { color: inherit; text-decoration: none; }
 }
 @media (max-width: 880px) {
   .hero-bg {
-    display: none;
+    display: block;
+    background: url("https://res.cloudinary.com/dass5gqvk/image/upload/v1780112905/12_gz72q8.jpg") center top/100% auto no-repeat;
+    opacity: 1;
+    filter: none;
+    top: 420px;
+    bottom: 0;
+    height: auto;
   }
   .hero {
     background: #0d1b2a;
-  }
-  .hero-mobile-photo {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin-top: 0;
-  }
-}
-@media (min-width: 881px) {
-  .hero-mobile-photo {
-    display: none;
   }
 }
 
