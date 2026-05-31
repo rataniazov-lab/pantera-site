@@ -3,7 +3,7 @@
 // Общие утилиты для всех SEO страниц turytashkent.com
 // ─────────────────────────────────────────────────────────────
 
-export const SITE_URL = "https://turytashkent.com";
+export const SITE_URL = "https://www.turytashkent.com";
 export const PHONE    = "+998771618888";
 export const PHONE_DISPLAY = "+998 77 161 88 88";
 export const EMAIL    = "uz@exploremore.travel";

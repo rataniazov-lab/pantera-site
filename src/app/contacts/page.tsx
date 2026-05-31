@@ -13,7 +13,7 @@ const contactSchema = {
   "@context": "https://schema.org",
   "@type": "TravelAgency",
   name: "PANTERA LUXE",
-  url: "https://turytashkent.com",
+  url: "https://www.turytashkent.com",
   telephone: PHONE,
   email: EMAIL,
   address: {

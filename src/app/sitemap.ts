@@ -1,11 +1,11 @@
 // ─────────────────────────────────────────────────────────────
 // sitemap.ts  →  src/app/sitemap.ts
 // Автогенерация sitemap.xml для turytashkent.com
-// Доступен по: https://turytashkent.com/sitemap.xml
+// Доступен по: https://www.turytashkent.com/sitemap.xml
 // ─────────────────────────────────────────────────────────────
 import type { MetadataRoute } from "next";
 
-const BASE = "https://turytashkent.com";
+const BASE = "https://www.turytashkent.com";
 type Freq  = "daily" | "weekly" | "monthly";
 
 const routes: { url: string; priority: number; freq: Freq }[] = [
