@@ -14,8 +14,10 @@ const manrope = Manrope({
   variable: "--font-manrope",
 });
 
-const SITE_URL  = process.env.NEXT_PUBLIC_SITE_URL || "https://turytashkent.com";
+const SITE_URL  = process.env.NEXT_PUBLIC_SITE_URL || "https://www.turytashkent.com";
 const LOGO_URL  = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779385406/pantera_luxe_logo_v0gbmo.png";
+// Фирменный квадратный логотип (оранжевый фон) — для Google: og:image + schema.org logo
+const BRAND_LOGO = "https://res.cloudinary.com/dass5gqvk/image/upload/v1780261211/web-app-manifest-512x512_z2qjxq.png";
 const TG_ICON   = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779538770/Telegram_logo_kdtfle.svg";
 const IG_ICON   = "https://res.cloudinary.com/dass5gqvk/image/upload/v1779538594/Instagram_qdbqub.png";
 
@@ -44,7 +46,7 @@ export const metadata: Metadata = {
     siteName: "PANTERA LUXE | turytashkent.com",
     title: "PANTERA LUXE — Туры из Ташкента",
     description: "Туры в Дубай, Турцию, Египет, Мальдивы из Ташкента.",
-    images: [{ url: LOGO_URL, width: 1200, height: 630, alt: "PANTERA LUXE" }],
+    images: [{ url: BRAND_LOGO, width: 512, height: 512, alt: "PANTERA LUXE" }],
   },
   robots: { index: true, follow: true },
   manifest: "/manifest.json",
@@ -65,7 +67,7 @@ const schemaOrg = {
   "@type": "TravelAgency",
   name: "PANTERA LUXE",
   url: SITE_URL,
-  logo: LOGO_URL,
+  logo: BRAND_LOGO,
   telephone: "+998771618888",
   email: "uz@exploremore.travel",
   address: {
